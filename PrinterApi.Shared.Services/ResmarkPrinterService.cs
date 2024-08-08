@@ -197,7 +197,8 @@ public class ResmarkPrinterService : IPrinterService
             var outputArgs = result.OutputArguments;
 
             // Ensure output arguments are as expected before accessing them
-            if (outputArgs.Length > 3 && outputArgs[3].Value != null) ret.EncoderSpeed = Convert.ToInt32(outputArgs[3].Value);
+            if (outputArgs.Length > 3 && outputArgs[3].Value != null)
+                ret.EncoderSpeed = Convert.ToInt32(outputArgs[3].Value);
             if (outputArgs.Length > 1 && outputArgs[1].Value != null) ret.Status = outputArgs[1].Value?.ToString();
 
             // Populate PrinterErrorDetails with values from OutputArguments[6] if it exists
@@ -210,7 +211,7 @@ public class ResmarkPrinterService : IPrinterService
             if (outputArgs.Length > 5 && outputArgs[5].Value is string[] errors)
                 ret.PrinterErrors = new List<string>(errors);
             else
-                ret.PrinterErrors = new List<string>(); 
+                ret.PrinterErrors = new List<string>();
         }
 
         // Return the populated result object
@@ -274,7 +275,7 @@ public class ResmarkPrinterService : IPrinterService
                 MethodsToCall = new[] { callMethodRequest }
             };
 
-            var ret= await requestChannel.CallAsync(callRequest);
+            var ret = await requestChannel.CallAsync(callRequest);
             await channel.CloseAsync();
             return ret;
         }

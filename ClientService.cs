@@ -1,19 +1,18 @@
-using System;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Diagraph.PCD.Opcua.Interfaces; 
+using Diagraph.PCD.Opcua.Interfaces;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
 
 namespace ResmarkApi;
 
-public class ClientService : IClientService 
-{ 
-    private readonly ApplicationDescription _clientDescription; 
-  
+public class ClientService : IClientService
+{
+    private readonly ApplicationDescription _clientDescription;
+
     public ClientService()
-    { 
+    {
         var name = Assembly.GetExecutingAssembly().GetName().Name;
         _clientDescription = new ApplicationDescription
         {
@@ -24,12 +23,12 @@ public class ClientService : IClientService
     }
 
     public async Task<ClientSessionChannel> OpenOpcuaChannelAsync(string channelId, string ipAddress, int port)
-    { 
-        var channel= CreateChannel(channelId, ipAddress, port);
+    {
+        var channel = CreateChannel(channelId, ipAddress, port);
         await channel.OpenAsync();
         return channel;
     }
-     
+
     private ClientSessionChannel CreateChannel(string channelId, string ipAddress, int opcuaPort,
         uint timeout = 10000u)
     {
