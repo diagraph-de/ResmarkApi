@@ -24,22 +24,7 @@ public class ResmarkAPI
         var clientService = new ClientService();
         _resmarkPrinterService = new ResmarkPrinterService(clientService);
     }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed)
-        {
-            if (disposing)
-            {
-                // Free any other managed objects here.
-                // Dispose of _clientService if it implements IDisposable
-            }
-
-            // Free any unmanaged objects here.
-            _disposed = true;
-        }
-    }
-
+     
     public async Task<OperationResultList> GetMessages()
     {
         return await _resmarkPrinterService.GetMessagesAsync(_printerId, _ipAddress, _folderName);
