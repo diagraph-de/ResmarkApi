@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResmarkApi", "ResmarkApi.csproj", "{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F6C9467-28AC-4C77-9C2C-B61FA2CCAE10}
+	EndGlobalSection
+EndGlobal
