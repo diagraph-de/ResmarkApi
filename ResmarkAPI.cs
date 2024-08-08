@@ -15,16 +15,16 @@ public class ResmarkAPI
     private bool _disposed;
 
     // Constructor with optional parameters for cache and logger
-    public ResmarkAPI(string printerId, string ipAddress, string folderName = DefaultFolderName)
+    public ResmarkAPI(string printerId, string ipAddress, string folderName = DefaultFolderName, bool cache=true)
     {
         _printerId = printerId;
         _ipAddress = ipAddress;
         _folderName = folderName;
 
         var clientService = new ClientService();
-        _resmarkPrinterService = new ResmarkPrinterService(clientService);
+        _resmarkPrinterService = new ResmarkPrinterService(clientService, cache);
     }
-     
+
     public async Task<OperationResultList> GetMessages()
     {
         return await _resmarkPrinterService.GetMessagesAsync(_printerId, _ipAddress, _folderName);

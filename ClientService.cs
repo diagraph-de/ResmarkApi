@@ -1,13 +1,12 @@
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Diagraph.PCD.Opcua.Interfaces;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
 
 namespace ResmarkApi;
 
-public class ClientService : IClientService
+public class ClientService
 {
     private readonly ApplicationDescription _clientDescription;
 

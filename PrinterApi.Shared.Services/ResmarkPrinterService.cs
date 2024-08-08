@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Diagraph.PCD.Opcua.Interfaces;
 using Newtonsoft.Json;
 using ResmarkApi.PrinterApi.Shared.Interfaces;
 using ResmarkApi.PrinterApi.Shared.Models;
 using Workstation.ServiceModel.Ua;
+using Workstation.ServiceModel.Ua.Channels;
 
 namespace ResmarkApi.PrinterApi.Shared.Services;
 
@@ -17,11 +18,14 @@ public class ResmarkPrinterService : IPrinterService
     private const int DefaultOpcuaPort = 16664;
     private static readonly NodeId ObjectId = NodeId.Parse(ObjectIdString);
 
-    private readonly IClientService _clientService;
+    private readonly ClientService _clientService;
+    private bool _cache;
 
-    internal ResmarkPrinterService(IClientService clientService)
+
+    internal ResmarkPrinterService(ClientService clientService, bool cache=true)
     {
         _clientService = clientService;
+        _cache=cache;
     }
 
     public async Task<OperationResultList> GetMessagesAsync(string printerId, string ipAddress, string folderName = "/")
@@ -263,10 +267,29 @@ public class ResmarkPrinterService : IPrinterService
         };
     }
 
+    public static Dictionary<string, ClientSessionChannel> _channels = new Dictionary<string, ClientSessionChannel>();
     private async Task<CallResponse?> CallResponse(string printerId, string ipAddress,
         CallMethodRequest callMethodRequest)
-    {
-        var channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
+    { 
+        ClientSessionChannel channel=null;
+        if (_cache)
+        {
+            var key = printerId + ipAddress;
+            if (!_channels.ContainsKey(key))
+            {
+                channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
+                _channels.Add(key, channel);
+            }
+            else
+            {
+                channel= _channels[key];
+            }
+        }
+        else
+        {
+            channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
+        }
+        
 
         if (channel is IRequestChannel requestChannel)
         {
@@ -276,7 +299,10 @@ public class ResmarkPrinterService : IPrinterService
             };
 
             var ret = await requestChannel.CallAsync(callRequest);
-            await channel.CloseAsync();
+            if (!_cache)
+            {
+                await channel.CloseAsync();
+            }
             return ret;
         }
 

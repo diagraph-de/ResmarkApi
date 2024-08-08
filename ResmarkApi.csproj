@@ -44,8 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientService.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="IClientService.cs" />
     <Compile Include="PrinterApi.Shared.Interfaces\IPrinterService.cs" />
     <Compile Include="PrinterApi.Shared.Models\PrinterStatusIndexes.cs" />
     <Compile Include="PrinterApi.Shared.Models\SerializableDictionary.cs" />
@@ -55,7 +53,6 @@
     <Compile Include="Search.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Properties\launchSettings.json" />
   </ItemGroup>
   <ItemGroup>
