@@ -14,7 +14,7 @@ namespace ResmarkApi.PrinterApi.Shared.Services;
 public class ResmarkPrinterService : IPrinterService
 {
     private const string ObjectIdString = "i=85";
-    private const int DefaultOpcuaPort = 16664;
+    public const int DefaultOpcuaPort = 16664;
     private static readonly NodeId ObjectId = NodeId.Parse(ObjectIdString);
 
     public static Dictionary<string, ClientSessionChannel> _channels = new();

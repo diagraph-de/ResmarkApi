@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientService.cs" />
+    <Compile Include="OpcUaNodeExplorerService.cs" />
     <Compile Include="PrinterApi.Shared.Interfaces\IPrinterService.cs" />
     <Compile Include="PrinterApi.Shared.Models\PrinterStatusIndexes.cs" />
     <Compile Include="PrinterApi.Shared.Models\SerializableDictionary.cs" />
