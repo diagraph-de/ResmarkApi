@@ -15,7 +15,7 @@ public class ResmarkAPI
     private bool _disposed;
 
     // Constructor with optional parameters for cache and logger
-    public ResmarkAPI(string printerId, string ipAddress, string folderName = DefaultFolderName, bool cache=true)
+    public ResmarkAPI(string printerId, string ipAddress, string folderName = DefaultFolderName, bool cache = true)
     {
         _printerId = printerId;
         _ipAddress = ipAddress;

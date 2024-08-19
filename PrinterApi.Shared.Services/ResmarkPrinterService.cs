@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ResmarkApi.PrinterApi.Shared.Interfaces;
@@ -18,14 +17,16 @@ public class ResmarkPrinterService : IPrinterService
     private const int DefaultOpcuaPort = 16664;
     private static readonly NodeId ObjectId = NodeId.Parse(ObjectIdString);
 
+    public static Dictionary<string, ClientSessionChannel> _channels = new();
+
     private readonly ClientService _clientService;
-    private bool _cache;
+    private readonly bool _cache;
 
 
-    internal ResmarkPrinterService(ClientService clientService, bool cache=true)
+    internal ResmarkPrinterService(ClientService clientService, bool cache = true)
     {
         _clientService = clientService;
-        _cache=cache;
+        _cache = cache;
     }
 
     public async Task<OperationResultList> GetMessagesAsync(string printerId, string ipAddress, string folderName = "/")
@@ -267,11 +268,10 @@ public class ResmarkPrinterService : IPrinterService
         };
     }
 
-    public static Dictionary<string, ClientSessionChannel> _channels = new Dictionary<string, ClientSessionChannel>();
     private async Task<CallResponse?> CallResponse(string printerId, string ipAddress,
         CallMethodRequest callMethodRequest)
-    { 
-        ClientSessionChannel channel=null;
+    {
+        ClientSessionChannel channel = null;
         if (_cache)
         {
             var key = printerId + ipAddress;
@@ -282,14 +282,14 @@ public class ResmarkPrinterService : IPrinterService
             }
             else
             {
-                channel= _channels[key];
+                channel = _channels[key];
             }
         }
         else
         {
             channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
         }
-        
+
 
         if (channel is IRequestChannel requestChannel)
         {
@@ -299,10 +299,7 @@ public class ResmarkPrinterService : IPrinterService
             };
 
             var ret = await requestChannel.CallAsync(callRequest);
-            if (!_cache)
-            {
-                await channel.CloseAsync();
-            }
+            if (!_cache) await channel.CloseAsync();
             return ret;
         }
 
