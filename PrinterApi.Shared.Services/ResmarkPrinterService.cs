@@ -18,9 +18,9 @@ public class ResmarkPrinterService : IPrinterService
     private static readonly NodeId ObjectId = NodeId.Parse(ObjectIdString);
 
     public static Dictionary<string, ClientSessionChannel> _channels = new();
+    private readonly bool _cache;
 
     private readonly ClientService _clientService;
-    private readonly bool _cache;
 
 
     internal ResmarkPrinterService(ClientService clientService, bool cache = true)

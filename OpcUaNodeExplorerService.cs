@@ -15,6 +15,7 @@ public class OpcUaNodeExplorerService
     {
         _clientService = clientService;
     }
+
     private static async Task List()
     {
         var clientService = new ClientService();
