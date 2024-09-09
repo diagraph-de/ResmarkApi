@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using ResmarkApi;
 
@@ -11,7 +11,7 @@ namespace ResmarkApiDemo
         private static async Task Main(string[] args)
         {
             //Search Resmark printers
-            var printers=PrinterSearch.Search();
+            var printers = PrinterSearch.Search();
             foreach (var message in printers.Result) Console.WriteLine(message);
 
             // Create an instance of the ResmarkAPI
@@ -43,7 +43,7 @@ namespace ResmarkApiDemo
 
                 // 3. Print XML message
                 Console.WriteLine("\nPrinting an .next message...");
-                var messageXmlPath = "sampleMessage.next";
+                var messageXmlPath = "variable.next";
                 if (File.Exists(messageXmlPath))
                 {
                     var messageXml = File.ReadAllText(messageXmlPath);
@@ -52,15 +52,20 @@ namespace ResmarkApiDemo
                 }
                 else
                 {
-                    Console.WriteLine("sampleMessage.next file not found.");
+                    Console.WriteLine("variable.next file not found.");
                 }
 
-                // 4. Print stored message
-                Console.WriteLine("\nPrinting a stored message..." + messagesResult.List.Last());
-                var printStoredResult = await resmarkAPI.PrintStoredMessage(messagesResult.List.Last());
+                // 4. Cancel printing
+                Console.WriteLine("\nCanceling print...");
+                var cancelPrintResult = await resmarkAPI.CancelPrint();
+                Console.WriteLine("Print canceled: " + cancelPrintResult.Success);
+
+                // 5. Print stored message
+                Console.WriteLine("\nPrinting a stored message...");
+                var printStoredResult = await resmarkAPI.PrintStoredMessage("variable.next");
                 Console.WriteLine("Printed successfully: " + printStoredResult.Success);
 
-                // 5. Retrieve message variable data
+                // 6. Retrieve message variable data
                 Console.WriteLine("\nRetrieving message variable data...");
                 var messageVariablesResult = await resmarkAPI.GetMessageVariableData();
                 if (messageVariablesResult.Success && messageVariablesResult.Dictionary != null)
@@ -69,18 +74,28 @@ namespace ResmarkApiDemo
                 else
                     Console.WriteLine("Error retrieving message variables: " + messageVariablesResult.Message);
 
+                // 7. Set message variable data
+                Console.WriteLine("\nSetting message variable data...");
+                var newVariables = new Dictionary<string, string>
+                {
+                    { "", DateTime.Now.ToLongTimeString() }
+                };
 
-                // 6. Cancel printing
-                Console.WriteLine("\nCanceling print...");
-                var cancelPrintResult = await resmarkAPI.CancelPrint();
-                Console.WriteLine("Print canceled: " + cancelPrintResult.Success);
+                var setVariableDataResult = await resmarkAPI.SetMessageVariableData(newVariables);
+                Console.WriteLine("Message variable data set: " + setVariableDataResult.Success);
 
-                // 7. Pause printing
+                // 8. Set message count
+                Console.WriteLine("\nSetting message count...");
+                var messageCount = 1; // Example count
+                var setMessageCountResult = await resmarkAPI.SetMessageCount(messageCount);
+                Console.WriteLine("Message count set: " + setMessageCountResult.Success);
+
+                // 9. Pause printing
                 Console.WriteLine("\nPausing print...");
                 var pausePrintResult = await resmarkAPI.PausePrinting();
                 Console.WriteLine("Print paused: " + pausePrintResult.Success);
 
-                // 8. Resume printing
+                // 10. Resume printing
                 Console.WriteLine("\nResuming print...");
                 var resumePrintResult = await resmarkAPI.ResumePrinting();
                 Console.WriteLine("Print resumed: " + resumePrintResult.Success);
