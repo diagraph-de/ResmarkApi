@@ -15,7 +15,7 @@ The `ResmarkAPI` is a C# library for interacting with Resmark printers. This pro
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/yourusername/ResmarkAPI.git
+    git clone https://github.com/diagraph.de/ResmarkAPI.git
     ```
 
 2. **Navigate to the Project Directory**:
