@@ -39,19 +39,16 @@ The `ResmarkAPI` is a C# library for interacting with Resmark printers. This pro
 
     Update the printer ID, IP address, and optional folder name in the `Program.cs` file:
     ```csharp
-    string printerId = "Printer123";
-    string ipAddress = "192.168.1.100";
-    string folderName = "/messages"; // Optional
+    var printerUID = "02fd";
+    var ipAddress = "192.168.174.225";
+    var folderName = "/";
     ResmarkAPI resmarkAPI = new ResmarkAPI(printerId, ipAddress, folderName);
     ```
 
 2. **Run the Demo Program**:
 
-    Execute the application to see various API functionalities in action. Use the following command:
-    ```bash
-    dotnet run
-    ```
-
+    Execute the application with visual studio to see various API functionalities in action. Use the following command:
+ 
     The program will demonstrate:
     - Retrieving messages
     - Printing an XML message
@@ -59,32 +56,5 @@ The `ResmarkAPI` is a C# library for interacting with Resmark printers. This pro
     - Managing message variables
     - Checking printer status
     - Cancelling, pausing, and resuming print jobs
-
-3. **Sample Code**:
-
-    - **Retrieve Messages**:
-      ```csharp
-      var messages = await resmarkAPI.GetMessages();
-      ```
-
-    - **Print XML Message**:
-      ```csharp
-      string xmlContent = "<your XML content>";
-      var result = await resmarkAPI.PrintMessageXML(xmlContent);
-      ```
-
-    - **Print Stored Message**:
-      ```csharp
-      var result = await resmarkAPI.PrintStoredMessage("storedMessageName");
-      ```
-
-    - **Cancel Printing**:
-      ```csharp
-      var result = await resmarkAPI.CancelPrint();
-      ```
-
-    - **Get Printer Status**:
-      ```csharp
-      var status = await resmarkAPI.GetStatus();
-      ```
+ 
 --- 
