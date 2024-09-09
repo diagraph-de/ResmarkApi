@@ -10,12 +10,7 @@ The `ResmarkAPI` is a C# library for interacting with Resmark printers. This pro
 - **Manage Message Variables**: Set and retrieve variables used in stored messages.
 - **Control Printing Operations**: Cancel, pause, and resume printing.
 - **Get Printer Status**: Retrieve the printer's current status and error details.
-
-## Requirements
-
-- .NET Core 3.1 or higher
-- Access to `ResmarkPrinterService` library (make sure you have the necessary dependencies)
-
+ 
 ## Installation
 
 1. **Clone the Repository**:
