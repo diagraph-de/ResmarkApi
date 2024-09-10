@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{95C5A1F7-6E1C-4F74-B833-DA421AE6E9A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ResmarkApi_Demo</RootNamespace>
+    <RootNamespace>Diagraph.ResmarkApi.Demo</RootNamespace>
     <AssemblyName>ResmarkApi-Demo</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

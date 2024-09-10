@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ResmarkApi;
+namespace Diagraph.ResmarkApi;
 
 public class PrinterSearch
 {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ResmarkApi.PrinterApi.Shared.Interfaces;
-using ResmarkApi.PrinterApi.Shared.Services;
+using Diagraph.ResmarkApi.Interfaces;
+using Diagraph.ResmarkApi.Services;
 
-namespace ResmarkApi;
+namespace Diagraph.ResmarkApi;
 
 public class ResmarkAPI
 {

@@ -1,4 +1,4 @@
-namespace ResmarkApi.PrinterApi.Shared.Models;
+namespace Diagraph.ResmarkApi.Models;
 
 public enum PrinterStatusIndexes
 {

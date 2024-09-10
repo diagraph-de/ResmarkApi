@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
 
-namespace ResmarkApi.PrinterApi.Shared.Services;
+namespace Diagraph.ResmarkApi.Services;
 
 public class OpcUaNodeExplorerService
 {

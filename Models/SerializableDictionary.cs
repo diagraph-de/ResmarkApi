@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace ResmarkApi.PrinterApi.Shared.Models;
+namespace Diagraph.ResmarkApi.Models;
 
 [Serializable]
 [XmlRoot(ElementName = "DictionaryOfString_String", Namespace = "", IsNullable = false)]

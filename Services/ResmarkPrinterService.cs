@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Diagraph.ResmarkApi.Interfaces;
+using Diagraph.ResmarkApi.Models;
 using Newtonsoft.Json;
-using ResmarkApi.PrinterApi.Shared.Interfaces;
-using ResmarkApi.PrinterApi.Shared.Models;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
 
-namespace ResmarkApi.PrinterApi.Shared.Services;
+namespace Diagraph.ResmarkApi.Services;
 
 public class ResmarkPrinterService : IPrinterService
 {

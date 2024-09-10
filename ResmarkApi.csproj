@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>ResmarkApi</RootNamespace>
+    <RootNamespace>Diagraph.ResmarkApi</RootNamespace>
     <AssemblyName>ResmarkApi</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,15 +43,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientService.cs" />
-    <Compile Include="OpcUaNodeExplorerService.cs" />
-    <Compile Include="PrinterApi.Shared.Interfaces\IPrinterService.cs" />
-    <Compile Include="PrinterApi.Shared.Models\PrinterStatusIndexes.cs" />
-    <Compile Include="PrinterApi.Shared.Models\SerializableDictionary.cs" />
-    <Compile Include="PrinterApi.Shared.Services\ResmarkPrinterService.cs" />
+    <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\OpcUaNodeExplorerService.cs" />
+    <Compile Include="Interfaces\IPrinterService.cs" />
+    <Compile Include="Models\PrinterStatusIndexes.cs" />
+    <Compile Include="Models\SerializableDictionary.cs" />
+    <Compile Include="Services\ResmarkPrinterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResmarkAPI.cs" />
-    <Compile Include="Search.cs" />
+    <Compile Include="PrinterSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
@@ -88,5 +88,6 @@
       <Version>3.2.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

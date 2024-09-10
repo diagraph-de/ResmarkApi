@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Workstation.ServiceModel.Ua;
 
-namespace ResmarkApi.PrinterApi.Shared.Interfaces;
+namespace Diagraph.ResmarkApi.Interfaces;
 
 public interface IPrinterService
 {

@@ -1,4 +1,77 @@
-﻿using System;
+# ResmarkAPI Demo
+
+This is a simple C# program for interfacing with a Resmark printer using the ResmarkAPI. It demonstrates how to connect to a Resmark printer, retrieve information, handle printing tasks, and manage message variables.
+
+## Prerequisites
+
+Before running this program, ensure you have the following prerequisites:
+
+- A Diagraph Resmark printer with a reachable IP address.
+- The .NET SDK installed.
+- Diagraph-ResmarkAPI NuGet package (e.g., Diagraph-ResmarkAPI.1.0.0.nupkg)
+
+## Getting Started
+
+ 1. Create a new C# project in your preferred development environment.
+
+ 2. Add the Diagraph-ResmarkAPI NuGet package to your project.
+
+ 3. Replace the default code in your project with the provided code.
+
+ 4. Build your program.
+
+ 5. Place a printer message "variable.next" in the bin Folder and run your program.
+ 
+Content of the file "variable.next" could be
+
+```xml
+<?xml version="1.0"?>
+<ProductObject Name="variable" GapBetweenPrint="1.000" PrintCount="1" TaskType="HighResTask" DPI="300">
+	<Margin />
+	<Box Width="10.000" Length="10.000" Height="18.000" />
+	<Variables />
+	<Panel Name="Front">
+		<Head UID="0" Name="PrintHead1" Type="384" Offset="1.000" Enabled="True" DPI="300">
+			<FieldObject xsi:type="VarFieldObject" X="1.708" Y="0.656" LockAspectRatio="True" Data="WWWWWWWWWW" Family="Arial" Style="Regular" Width="36" Height="36" Length="10" />
+		</Head>
+	</Panel>
+	<Panel Name="Right" />
+	<Panel Name="Back" />
+	<Panel Name="Left" />
+	<Panel Name="Top" />
+	<Panel Name="Bottom" />
+</ProductObject>
+```
+
+## Usage
+
+This program connects to a Resmark printer, retrieves printer status, and manages messages and variable data. It provides the following functionalities:
+
+- **Search for available Resmark printers** on the network and display their information.
+- **Fetch information** about the connected printer, including status and errors.
+- **Retrieve and print XML messages**.
+- **Manage and print stored messages**.
+- **Set message variable data** and **message counts** for printing.
+- **Pause, resume, and cancel printing jobs**.
+
+## Code Explanation
+
+- The program utilizes the `ResmarkAPI` class to interact with the Resmark printer.
+  
+- It begins by searching for available printers on the network and connecting to the specified printer using its IP address and printer UID.
+
+- It fetches important information about the connected printer's status and provides options to handle messages, including printing XML-based messages or stored messages on the printer.
+
+- It allows you to set custom variable data for messages and set a specific message count for printing.
+
+- The program also includes error handling and printer job control features such as pausing, resuming, and canceling prints.
+
+### Example Code Snippets
+
+Here are some important functions in the demo:
+
+```csharp
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -107,3 +180,31 @@ internal class Program
         Console.ReadKey();
     }
 }
+```
+
+## Features
+
+1. **Retrieve Printer Information**:
+   - Get the current status and potential error details from the printer.
+   
+2. **Print Messages**:
+   - Print messages stored in XML files or predefined stored messages on the printer.
+
+3. **Set Message Variables**:
+   - Dynamically set the variables for messages before printing using the `SetMessageVariableData()` method.
+
+4. **Set Message Count**:
+   - Define how many times a specific message should be printed with the `SetMessageCount()` function.
+
+5. **Job Control**:
+   - Control printing jobs by pausing, resuming, or canceling them.
+
+## How to Run
+
+1. Make sure the Resmark printer is connected to the network.
+2. Modify the `printerUID`, `ipAddress`, and `folderName` fields in the demo program to match your printer's configuration.
+3. Run the program and follow the prompts in the console to interact with the Resmark printer.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
