@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using System.Threading.Tasks;
 using Diagraph.ResmarkApi.Interfaces;
 using Diagraph.ResmarkApi.Models;
