@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResmarkApi", "ResmarkApi.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResmarkApi-Demo", "ResmarkApi-Demo\ResmarkApi-Demo.csproj", "{95C5A1F7-6E1C-4F74-B833-DA421AE6E9A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workstation.UaClient", "UaClient\Workstation.UaClient.csproj", "{ACB67DF7-C467-33DE-2539-324E7DB54815}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{95C5A1F7-6E1C-4F74-B833-DA421AE6E9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95C5A1F7-6E1C-4F74-B833-DA421AE6E9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95C5A1F7-6E1C-4F74-B833-DA421AE6E9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB67DF7-C467-33DE-2539-324E7DB54815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB67DF7-C467-33DE-2539-324E7DB54815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB67DF7-C467-33DE-2539-324E7DB54815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB67DF7-C467-33DE-2539-324E7DB54815}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

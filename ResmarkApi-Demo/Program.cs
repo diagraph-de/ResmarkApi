@@ -10,11 +10,26 @@ internal class Program
     {
         //Search Resmark printers
         var printers = PrinterSearch.Search();
-        foreach (var message in printers.Result) Console.WriteLine(message);
 
-        // Create an instance of the ResmarkAPI
-        var printerUID = "02fd";
-        var ipAddress = "192.168.174.225";
+        var message = "";
+        foreach (var result in printers.Result)
+        {
+            Console.WriteLine(message);
+            message = result;
+        }
+
+        if (message == "")
+        {
+            Console.WriteLine("\nNo printers found.");
+            return;
+        }
+
+        var ipAddress = message.Split(' ')[0];
+        var printerUID = message.Split(new[] { "UID=" }, StringSplitOptions.None)[1].Split('}')[0].Trim().Split(',')[0];
+
+
+        // Create an instance of the ResmarkAPI 
+
         var folderName = "/";
         var resmarkAPI = new ResmarkAPI(printerUID, ipAddress, folderName);
 
@@ -24,6 +39,10 @@ internal class Program
             // 1. Retrieve printer status
             Console.WriteLine("\nRetrieving printer status...");
             var statusResult = await resmarkAPI.GetStatus();
+
+            if (!string.IsNullOrEmpty(statusResult.Error))
+                return;
+
             Console.WriteLine("Printer status: " + statusResult.Status);
 
             // 2. Retrieve messages
@@ -32,7 +51,7 @@ internal class Program
             if (messagesResult.Success)
             {
                 Console.WriteLine("Messages:");
-                foreach (var message in messagesResult.List) Console.WriteLine(message);
+                foreach (var msg in messagesResult.List) Console.WriteLine(msg);
             }
             else
             {

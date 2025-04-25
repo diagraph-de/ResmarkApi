@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
 using System.Threading.Tasks;
 using Diagraph.ResmarkApi.Interfaces;
 using Diagraph.ResmarkApi.Models;
@@ -23,7 +22,6 @@ public class ResmarkPrinterService : IPrinterService
 
     private readonly ClientService _clientService;
 
-
     internal ResmarkPrinterService(ClientService clientService, bool cache = true)
     {
         _clientService = clientService;
@@ -37,7 +35,8 @@ public class ResmarkPrinterService : IPrinterService
         var list = new List<string>();
         try
         {
-            list = ((string[])result.Response.Results[0].OutputArguments[1].Value).ToList();
+            if (result.Response != null && result.Response.Results != null)
+                list = ((string[])result.Response.Results[0].OutputArguments[1].Value).ToList();
         }
         catch (Exception e)
         {
@@ -218,6 +217,11 @@ public class ResmarkPrinterService : IPrinterService
                 ret.PrinterErrors = new List<string>(errors);
             else
                 ret.PrinterErrors = new List<string>();
+        }
+        else
+        {
+            Console.WriteLine(response.Error);
+            ret.Success = false;
         }
 
         // Return the populated result object

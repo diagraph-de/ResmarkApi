@@ -1,7 +1,6 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-
 [assembly: AssemblyTitle("ResmarkApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

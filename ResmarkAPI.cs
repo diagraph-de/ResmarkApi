@@ -74,9 +74,4 @@ public class ResmarkAPI
     {
         return await _resmarkPrinterService.GetStatusInformationAsync(_printerId, _ipAddress);
     }
-
-    public async Task<OperationResultStatus> GetPrintingMessageName()
-    {
-        return await _resmarkPrinterService.GetStatusInformationAsync(_printerId, _ipAddress);
-    }
 }
