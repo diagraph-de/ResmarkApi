@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
+using ApplicationDescription = Opc.Ua.ApplicationDescription;
+using ApplicationType = Opc.Ua.ApplicationType;
 
 namespace Diagraph.ResmarkApi.Services;
 

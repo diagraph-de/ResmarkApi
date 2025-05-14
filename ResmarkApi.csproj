@@ -57,12 +57,12 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="UaClient\Workstation.UaClient.csproj">
-      <Project>{acb67df7-c467-33de-2539-324e7db54815}</Project>
-      <Name>Workstation.UaClient</Name>
-    </ProjectReference>
+    <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua.Client">
+      <Version>1.5.376.213</Version>
+    </PackageReference>
+    <PackageReference Include="Workstation.UaClient">
+      <Version>3.2.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

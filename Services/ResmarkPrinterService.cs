@@ -8,6 +8,12 @@ using Diagraph.ResmarkApi.Models;
 using Newtonsoft.Json;
 using Workstation.ServiceModel.Ua;
 using Workstation.ServiceModel.Ua.Channels;
+using CallMethodRequest = Opc.Ua.CallMethodRequest;
+using CallRequest = Opc.Ua.CallRequest;
+using CallResponse = Opc.Ua.CallResponse;
+using NodeId = Opc.Ua.NodeId;
+using StatusCode = Opc.Ua.StatusCode;
+using Variant = Opc.Ua.Variant;
 
 namespace Diagraph.ResmarkApi.Services;
 
@@ -320,7 +326,7 @@ public class ResmarkPrinterService : IPrinterService
                 Error = "The printer did not respond."
             };
 
-        if (StatusCode.IsGood(callResponse.ResponseHeader.ServiceResult) && callResponse.Results.Length != 0)
+        if (StatusCode.IsGood(callResponse.ResponseHeader.ServiceResult) && callResponse.Results.Count != 0)
             return new OperationResult
             {
                 Success = true,
