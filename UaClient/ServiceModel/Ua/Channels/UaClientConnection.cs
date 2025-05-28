@@ -47,7 +47,7 @@ public class UaClientConnection : ITransportConnection
 #pragma warning restore CS1998
     {
 #if NETCOREAPP3_0_OR_GREATER
-            await Stream.DisposeAsync();
+        await Stream.DisposeAsync();
 #else
         Stream.Dispose();
 #endif
