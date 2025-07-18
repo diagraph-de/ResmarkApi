@@ -356,7 +356,7 @@ namespace ResmarkPrinterGroupDemo
             gridStatus.Location = new System.Drawing.Point(389, 402);
             gridStatus.Name = "gridStatus";
             gridStatus.ReadOnly = true;
-            gridStatus.Size = new System.Drawing.Size(560, 187);
+            gridStatus.Size = new System.Drawing.Size(586, 187);
             gridStatus.TabIndex = 15;
             // 
             // lblStatus
@@ -684,6 +684,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnRefreshStatus
             // 
+            btnRefreshStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRefreshStatus.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnRefreshStatus.ButtonImage = null;
             btnRefreshStatus.ButtonText = "Refresh";
@@ -710,7 +711,7 @@ namespace ResmarkPrinterGroupDemo
             btnRefreshStatus.IsAutoSizing = false;
             btnRefreshStatus.IsSelectable = false;
             btnRefreshStatus.IsSelected = false;
-            btnRefreshStatus.Location = new System.Drawing.Point(849, 363);
+            btnRefreshStatus.Location = new System.Drawing.Point(875, 363);
             btnRefreshStatus.LoggingEnabled = true;
             btnRefreshStatus.MirrorImage = false;
             btnRefreshStatus.Name = "btnRefreshStatus";

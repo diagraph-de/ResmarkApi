@@ -54,6 +54,9 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                     _groupManager.AddPrinter(printer);
                 }
             }
+
+        if (listPrinters.Items.Count > 0)
+            listPrinters.SelectedIndex = 0;
     }
 
     private void InitLanguage()
@@ -98,8 +101,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         _statusTable.Clear();
         _statusTable.Columns.Clear();
         _statusTable.Columns.Add("IP");
-        _statusTable.Columns.Add("Connected");
         _statusTable.Columns.Add("Status");
+        _statusTable.Columns.Add("Connected");
         _statusTable.Columns.Add("Success");
     }
 
@@ -115,12 +118,12 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                 statusText += Environment.NewLine + "Errors:" + Environment .NewLine + string.Join(Environment.NewLine, printer.PrinterErrors);
 
             if (printer.PrinterErrorDetails.Count > 0)
-                statusText += Environment.NewLine + Environment.NewLine + "Details:"+ Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrorDetails);
+                statusText += Environment.NewLine + Environment.NewLine + "Details:" + Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrorDetails);
 
             _statusTable.Rows.Add(
-                printer.IpAddress,
-                printer.IsConnected ? "✓" : "✗",
+                printer.PrinterId + " - " + printer.IpAddress,
                 statusText,
+                printer.IsConnected ? "✓" : "✗",
                 printer.LastSuccess ? "✓" : "✗"
             );
 
