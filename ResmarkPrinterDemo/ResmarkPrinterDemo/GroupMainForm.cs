@@ -33,7 +33,10 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         InitStatusTable();
         RestoreSettings();
         Shown += async (s, e) => await ScanForPrinters();
+
+        gridStatus.DataSource = _statusTable;
     }
+
 
     private void RestoreSettings()
     {
@@ -86,6 +89,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         lblMessage.Text = Resource.MessageFile;
         lblPrinters.Text = Resource.Printers;
         lblStatus.Text = Resource.StatusReady;
+        lblAvailableMessages.Text = Resource.AvailableMessages;
+        lblStatusList.Text = Resource.Status;
     }
 
     private void InitStatusTable()
@@ -101,14 +106,36 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     private void UpdateStatusTable()
     {
         _statusTable.Rows.Clear();
+
         foreach (var printer in _groupManager.Printers)
+        {
+            var statusText = printer.Status + Environment.NewLine;
+
+            if (printer.PrinterErrors.Count > 0)
+                statusText += Environment.NewLine + "Errors:" + Environment .NewLine + string.Join(Environment.NewLine, printer.PrinterErrors);
+
+            if (printer.PrinterErrorDetails.Count > 0)
+                statusText += Environment.NewLine + Environment.NewLine + "Details:"+ Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrorDetails);
+
             _statusTable.Rows.Add(
                 printer.IpAddress,
-                printer.IsConnected ? "Yes" : "No",
-                printer.LastStatus,
-                printer.LastSendSuccess ? "✓" : "✗"
+                printer.IsConnected ? "✓" : "✗",
+                statusText,
+                printer.LastSuccess ? "✓" : "✗"
             );
-    }
+
+            // Color logic based on PrinterErrorDetails count
+            var row = gridStatus.Rows[0];
+            if (printer.PrinterErrorDetails.Count > 0)
+            {
+                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightCoral; // red
+            }
+            else
+            {
+                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen; // green
+            }
+        }
+    } 
 
     private void LoadMessages()
     {
@@ -287,6 +314,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             _groupManager.GetPrinter(printer)?.PausePrintingAsync();
             lblStatus.Text = Resource.StatusPause;
         }
+
+        btnRefreshStatus_ClickAsync(this, null);
     }
 
     private void btnResume_Click(object sender, EventArgs e)
@@ -296,6 +325,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             _groupManager.GetPrinter(printer)?.ResumePrintingAsync();
             lblStatus.Text = Resource.StatusResume;
         }
+
+        btnRefreshStatus_ClickAsync(this, null);
     }
 
     private void btnStop_Click(object sender, EventArgs e)
@@ -305,16 +336,28 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             _groupManager.GetPrinter(printer)?.CancelPrintAsync();
             lblStatus.Text = Resource.StatusStop;
         }
+
+        btnRefreshStatus_ClickAsync(this, null);
     }
 
-    private void btnSelectMessage_Click(object sender, EventArgs e)
+    private async void btnSelectMessage_Click(object sender, EventArgs e)
     {
         if (listPrinters.SelectedItem is string printer)
         {
-            _groupManager.GetPrinter(printer)?.PrintStoredMessageAsync(cboSelectMessage.Text);
-            lblStatus.Text = string.Format(Resource.StatusSelectMessage, cboSelectMessage.Text);
-        }
+            var wrapper = _groupManager.GetPrinter(printer);
+            if (wrapper == null) return;
+
+            if (!int.TryParse(txtPrintCount.Text, out var printCount)) printCount = 1;
+
+            await wrapper.SetPrintCountAsync(printCount);
+            await wrapper.PrintStoredMessageAsync(cboSelectMessage.Text);
+            var status = await wrapper.GetStatusAsync();
+            lblStatus.Text = $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{cboSelectMessage.Text}\" – {status}";
+
+            btnRefreshStatus_ClickAsync(this, null);
+        } 
     }
+
 
     private async void listPrinters_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -333,11 +376,23 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                     cboSelectMessage.SelectedIndex = 0;
             }
         }
+
+        btnRefreshStatus_ClickAsync(this, null);
     }
 
     public class FoundPrinter
     {
         public string IP { get; set; }
         public string Detail { get; set; }
+    }
+
+    private async void btnRefreshStatus_ClickAsync(object sender, EventArgs e)
+    {
+        foreach (var printer in _groupManager.Printers)
+        {
+            await printer.GetStatusAsync();
+        }
+
+        UpdateStatusTable(); 
     }
 }

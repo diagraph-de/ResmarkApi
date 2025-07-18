@@ -190,15 +190,24 @@
     <value>Druck gestoppt.</value>
   </data>
   <data name="StatusPrinterAdded" xml:space="preserve">
-  <value>Drucker hinzugefügt.</value>
-</data>
+    <value>Drucker hinzugefügt.</value>
+  </data>
   <data name="StatusPrinterRemoved" xml:space="preserve">
-  <value>Drucker entfernt.</value>
-</data>
+    <value>Drucker entfernt.</value>
+  </data>
   <data name="StatusSending" xml:space="preserve">
-  <value>Sende Nachricht an alle Drucker…</value>
-</data>
+    <value>Sende Nachricht an alle Drucker…</value>
+  </data>
   <data name="StatusSent" xml:space="preserve">
-  <value>Nachricht wurde gesendet.</value>
-</data>
+    <value>Nachricht wurde gesendet.</value>
+  </data>
+  <data name="AvailableMessages" xml:space="preserve">
+    <value>Vorhandene Druckbilder</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StatusRefreshed" xml:space="preserve">
+    <value>Status aktualisiert</value>
+  </data>
 </root>

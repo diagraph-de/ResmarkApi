@@ -70,6 +70,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Available messages ähnelt.
+        /// </summary>
+        internal static string AvailableMessages {
+            get {
+                return ResourceManager.GetString("AvailableMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Connection failed ähnelt.
         /// </summary>
         internal static string ConnectionFailed {
@@ -205,6 +214,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Status ähnelt.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Variable editor opened. ähnelt.
         /// </summary>
         internal static string StatusEditVariables {
@@ -246,6 +264,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string StatusReady {
             get {
                 return ResourceManager.GetString("StatusReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Status refreshed ähnelt.
+        /// </summary>
+        internal static string StatusRefreshed {
+            get {
+                return ResourceManager.GetString("StatusRefreshed", resourceCulture);
             }
         }
         

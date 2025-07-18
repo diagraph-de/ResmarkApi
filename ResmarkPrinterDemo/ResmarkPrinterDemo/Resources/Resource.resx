@@ -190,16 +190,24 @@
     <value>Printing stopped.</value>
   </data>
   <data name="StatusPrinterAdded" xml:space="preserve">
-  <value>Printer added.</value>
-</data>
+    <value>Printer added.</value>
+  </data>
   <data name="StatusPrinterRemoved" xml:space="preserve">
-  <value>Printer removed.</value>
-</data>
+    <value>Printer removed.</value>
+  </data>
   <data name="StatusSending" xml:space="preserve">
-  <value>Sending message to all printers…</value>
-</data>
+    <value>Sending message to all printers…</value>
+  </data>
   <data name="StatusSent" xml:space="preserve">
-  <value>Message has been sent.</value>
-</data>
-
+    <value>Message has been sent.</value>
+  </data>
+  <data name="AvailableMessages" xml:space="preserve">
+    <value>Available messages</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="StatusRefreshed" xml:space="preserve">
+    <value>Status refreshed</value>
+  </data>
 </root>

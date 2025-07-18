@@ -18,13 +18,18 @@ public class ResmarkPrinterWrapper
     public string LastStatus { get; private set; } = "";
     public bool LastSuccess { get; private set; }
     public bool IsConnected { get; set; }
-    public bool LastSendSuccess { get; set; }
+
+    public string Status { get; private set; } = "";
+    public int EncoderSpeed { get; private set; }
+    public List<string> PrinterErrors { get; private set; } = new();
+    public List<string> PrinterErrorDetails { get; private set; } = new();
 
     public async Task<bool> SendMessageAsync(string xml)
     {
         var result = await _service.PrintMessageAsync(PrinterId, IpAddress, xml);
         LastStatus = result.Message;
         LastSuccess = result.Success;
+        IsConnected = result.Success;
         return result.Success;
     }
 
@@ -33,7 +38,20 @@ public class ResmarkPrinterWrapper
         var result = await _service.GetStatusInformationAsync(PrinterId, IpAddress);
         LastStatus = result.Message;
         LastSuccess = result.Success;
-        return result.Message ?? "unknown";
+        IsConnected = result.Success;
+
+        if (result.Success)
+        {
+            Status = result.Status ?? "";
+            EncoderSpeed = result.EncoderSpeed;
+            PrinterErrors = result.PrinterErrors ?? new List<string>();
+            PrinterErrorDetails = result.PrinterErrorDetails ?? new List<string>();
+
+            return $"{Status} ({EncoderSpeed} mm/s)" +
+                   (PrinterErrors.Count > 0 ? $" | Errors: {string.Join(", ", PrinterErrors)}" : "");
+        }
+
+        return $"Error: {result.Error ?? "unknown"}";
     }
 
     public async Task<bool> SetPrintCountAsync(int count)

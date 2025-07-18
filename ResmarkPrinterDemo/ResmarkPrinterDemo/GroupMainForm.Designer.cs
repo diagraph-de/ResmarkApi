@@ -22,7 +22,6 @@ namespace ResmarkPrinterGroupDemo
         private ListBox listPrinters;
         private ListBox listScanResults;
         private MaterialSingleLineTextField txtPrintCount;
-        private MaterialLabel lblMessage;
         private MaterialLabel lblPrintCount; 
         private FlexButton btnPause;
         private FlexButton btnResume;
@@ -56,7 +55,6 @@ namespace ResmarkPrinterGroupDemo
             listPrinters = new ListBox();
             listScanResults = new ListBox();
             txtPrintCount = new MaterialSingleLineTextField();
-            lblMessage = new MaterialLabel();
             lblPrintCount = new MaterialLabel();
             lblPrinters = new MaterialLabel();
             btnPause = new FlexButton();
@@ -65,6 +63,9 @@ namespace ResmarkPrinterGroupDemo
             cboSelectMessage = new ComboBox();
             lblAvailableMessages = new MaterialLabel();
             btnSelectMessage = new FlexButton();
+            lblMessage = new MaterialLabel();
+            lblStatusList = new MaterialLabel();
+            btnRefreshStatus = new FlexButton();
             ((System.ComponentModel.ISupportInitialize)gridStatus).BeginInit();
             SuspendLayout();
             // 
@@ -352,10 +353,10 @@ namespace ResmarkPrinterGroupDemo
             gridStatus.AllowUserToDeleteRows = false;
             gridStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gridStatus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridStatus.Location = new System.Drawing.Point(403, 435);
+            gridStatus.Location = new System.Drawing.Point(389, 402);
             gridStatus.Name = "gridStatus";
             gridStatus.ReadOnly = true;
-            gridStatus.Size = new System.Drawing.Size(560, 154);
+            gridStatus.Size = new System.Drawing.Size(560, 187);
             gridStatus.TabIndex = 15;
             // 
             // lblStatus
@@ -404,18 +405,6 @@ namespace ResmarkPrinterGroupDemo
             txtPrintCount.TabStop = false;
             txtPrintCount.Text = "1";
             txtPrintCount.UseSystemPasswordChar = false;
-            // 
-            // lblMessage
-            // 
-            lblMessage.Depth = 0;
-            lblMessage.Font = new System.Drawing.Font("Roboto", 11F);
-            lblMessage.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblMessage.Location = new System.Drawing.Point(23, 372);
-            lblMessage.MouseState = MaterialSkinPlus.MouseState.HOVER;
-            lblMessage.Name = "lblMessage";
-            lblMessage.Size = new System.Drawing.Size(200, 23);
-            lblMessage.TabIndex = 7;
-            lblMessage.Text = "Message File (XML)";
             // 
             // lblPrintCount
             // 
@@ -669,9 +658,87 @@ namespace ResmarkPrinterGroupDemo
             btnSelectMessage.ViewMode = Diagraph.Controls.ViewMode.Simple;
             btnSelectMessage.Click += btnSelectMessage_Click;
             // 
+            // lblMessage
+            // 
+            lblMessage.Depth = 0;
+            lblMessage.Font = new System.Drawing.Font("Roboto", 11F);
+            lblMessage.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            lblMessage.Location = new System.Drawing.Point(23, 372);
+            lblMessage.MouseState = MaterialSkinPlus.MouseState.HOVER;
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new System.Drawing.Size(200, 23);
+            lblMessage.TabIndex = 7;
+            lblMessage.Text = "Message File (XML)";
+            // 
+            // lblStatusList
+            // 
+            lblStatusList.Depth = 0;
+            lblStatusList.Font = new System.Drawing.Font("Roboto", 11F);
+            lblStatusList.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            lblStatusList.Location = new System.Drawing.Point(389, 376);
+            lblStatusList.MouseState = MaterialSkinPlus.MouseState.HOVER;
+            lblStatusList.Name = "lblStatusList";
+            lblStatusList.Size = new System.Drawing.Size(200, 23);
+            lblStatusList.TabIndex = 20;
+            lblStatusList.Text = "Status";
+            // 
+            // btnRefreshStatus
+            // 
+            btnRefreshStatus.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnRefreshStatus.ButtonImage = null;
+            btnRefreshStatus.ButtonText = "Refresh";
+            btnRefreshStatus.CanGetFocus = true;
+            btnRefreshStatus.CenterText = false;
+            btnRefreshStatus.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnRefreshStatus.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnRefreshStatus.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnRefreshStatus.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnRefreshStatus.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnRefreshStatus.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnRefreshStatus.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnRefreshStatus.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnRefreshStatus.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnRefreshStatus.ControlText = "Refresh";
+            btnRefreshStatus.CornerRadius = 4;
+            btnRefreshStatus.DriverAssignmentKeys = null;
+            btnRefreshStatus.EnableBlink = false;
+            btnRefreshStatus.FlatStyle = FlatStyle.Flat;
+            btnRefreshStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnRefreshStatus.GradientPosition = 0.4F;
+            btnRefreshStatus.ImageAboveText = false;
+            btnRefreshStatus.ImageHeight = 0;
+            btnRefreshStatus.IsAutoSizing = false;
+            btnRefreshStatus.IsSelectable = false;
+            btnRefreshStatus.IsSelected = false;
+            btnRefreshStatus.Location = new System.Drawing.Point(849, 363);
+            btnRefreshStatus.LoggingEnabled = true;
+            btnRefreshStatus.MirrorImage = false;
+            btnRefreshStatus.Name = "btnRefreshStatus";
+            btnRefreshStatus.Password_Category = null;
+            btnRefreshStatus.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnRefreshStatus.Password_Name = null;
+            btnRefreshStatus.PrinterGroup_Category = null;
+            btnRefreshStatus.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnRefreshStatus.PrinterGroup_Name = null;
+            btnRefreshStatus.Size = new System.Drawing.Size(100, 33);
+            btnRefreshStatus.SupportedPrinter = null;
+            btnRefreshStatus.SuppressSelect = false;
+            btnRefreshStatus.SuppressUpdate = false;
+            btnRefreshStatus.TabIndex = 21;
+            btnRefreshStatus.Text = "Refresh";
+            btnRefreshStatus.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnRefreshStatus.TextCorrection = 0;
+            btnRefreshStatus.UpdateEnabled = true;
+            btnRefreshStatus.UseMouseOver = false;
+            btnRefreshStatus.VersionKey = null;
+            btnRefreshStatus.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnRefreshStatus.Click += btnRefreshStatus_ClickAsync;
+            // 
             // GroupMainForm
             // 
             ClientSize = new System.Drawing.Size(1002, 639);
+            Controls.Add(btnRefreshStatus);
+            Controls.Add(lblStatusList);
             Controls.Add(btnSelectMessage);
             Controls.Add(lblAvailableMessages);
             Controls.Add(cboSelectMessage);
@@ -704,5 +771,8 @@ namespace ResmarkPrinterGroupDemo
         private ComboBox cboSelectMessage;
         private MaterialLabel lblAvailableMessages;
         private FlexButton btnSelectMessage;
+        private MaterialLabel lblMessage;
+        private MaterialLabel lblStatusList;
+        private FlexButton btnRefreshStatus;
     }
 }
