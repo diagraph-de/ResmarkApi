@@ -1,6 +1,6 @@
-using Diagraph.ResmarkApi.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Diagraph.ResmarkApi.Services;
 
 public class ResmarkPrinterWrapper
 {

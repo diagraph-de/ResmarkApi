@@ -13,7 +13,7 @@ public class PrinterGroupManager
     {
         var id = printer.Split("-")[0].Trim();
         var ip = printer.Split("-")[1].Trim();
-        var wrapper = new ResmarkPrinterWrapper(printerService,id, ip);
+        var wrapper = new ResmarkPrinterWrapper(printerService, id, ip);
         if (!Printers.Exists(p => p.IpAddress == ip)) Printers.Add(wrapper);
     }
 
@@ -21,6 +21,7 @@ public class PrinterGroupManager
     {
         Printers.RemoveAll(p => p.IpAddress == ip);
     }
+
     public ResmarkPrinterWrapper? GetPrinter(string printer)
     {
         var parts = printer.Split('-');
@@ -30,5 +31,4 @@ public class PrinterGroupManager
         var ip = parts[1].Trim();
         return Printers.FirstOrDefault(p => p.IpAddress == ip);
     }
-
 }

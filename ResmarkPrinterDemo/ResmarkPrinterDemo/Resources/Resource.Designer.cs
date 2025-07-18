@@ -205,11 +205,101 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variable editor opened. ähnelt.
+        /// </summary>
+        internal static string StatusEditVariables {
+            get {
+                return ResourceManager.GetString("StatusEditVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printing paused. ähnelt.
+        /// </summary>
+        internal static string StatusPause {
+            get {
+                return ResourceManager.GetString("StatusPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printer added. ähnelt.
+        /// </summary>
+        internal static string StatusPrinterAdded {
+            get {
+                return ResourceManager.GetString("StatusPrinterAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printer removed. ähnelt.
+        /// </summary>
+        internal static string StatusPrinterRemoved {
+            get {
+                return ResourceManager.GetString("StatusPrinterRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Status: ready ähnelt.
         /// </summary>
         internal static string StatusReady {
             get {
                 return ResourceManager.GetString("StatusReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printing resumed. ähnelt.
+        /// </summary>
+        internal static string StatusResume {
+            get {
+                return ResourceManager.GetString("StatusResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stored message sent. ähnelt.
+        /// </summary>
+        internal static string StatusSelectMessage {
+            get {
+                return ResourceManager.GetString("StatusSelectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sending message to all printers… ähnelt.
+        /// </summary>
+        internal static string StatusSending {
+            get {
+                return ResourceManager.GetString("StatusSending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sending message to all printers… ähnelt.
+        /// </summary>
+        internal static string StatusSendMessage {
+            get {
+                return ResourceManager.GetString("StatusSendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Message has been sent. ähnelt.
+        /// </summary>
+        internal static string StatusSent {
+            get {
+                return ResourceManager.GetString("StatusSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printing stopped. ähnelt.
+        /// </summary>
+        internal static string StatusStop {
+            get {
+                return ResourceManager.GetString("StatusStop", resourceCulture);
             }
         }
         

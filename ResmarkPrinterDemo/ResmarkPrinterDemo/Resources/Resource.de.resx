@@ -171,4 +171,34 @@
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="StatusEditVariables" xml:space="preserve">
+    <value>Variableneditor geöffnet.</value>
+  </data>
+  <data name="StatusPause" xml:space="preserve">
+    <value>Druck pausiert.</value>
+  </data>
+  <data name="StatusResume" xml:space="preserve">
+    <value>Druck wird fortgesetzt.</value>
+  </data>
+  <data name="StatusSelectMessage" xml:space="preserve">
+    <value>Druckbild gesendet.</value>
+  </data>
+  <data name="StatusSendMessage" xml:space="preserve">
+    <value>Druckbild wird an alle Drucker gesendet…</value>
+  </data>
+  <data name="StatusStop" xml:space="preserve">
+    <value>Druck gestoppt.</value>
+  </data>
+  <data name="StatusPrinterAdded" xml:space="preserve">
+  <value>Drucker hinzugefügt.</value>
+</data>
+  <data name="StatusPrinterRemoved" xml:space="preserve">
+  <value>Drucker entfernt.</value>
+</data>
+  <data name="StatusSending" xml:space="preserve">
+  <value>Sende Nachricht an alle Drucker…</value>
+</data>
+  <data name="StatusSent" xml:space="preserve">
+  <value>Nachricht wurde gesendet.</value>
+</data>
 </root>
