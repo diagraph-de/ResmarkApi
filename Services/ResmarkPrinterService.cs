@@ -28,7 +28,7 @@ public class ResmarkPrinterService : IPrinterService
 
     private readonly ClientService _clientService;
 
-    internal ResmarkPrinterService(ClientService clientService, bool cache = true)
+    public ResmarkPrinterService(ClientService clientService, bool cache = true)
     {
         _clientService = clientService;
         _cache = cache;

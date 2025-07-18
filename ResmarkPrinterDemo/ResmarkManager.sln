@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResmarkManager", "ResmarkPrinterDemo\ResmarkManager.csproj", "{18BF10C8-1489-9FE6-1474-2D3376126CB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acControls", "..\..\..\aControl\acControls\acControls.csproj", "{A1241C13-7B13-4D0A-90AA-7A7B8468C109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ac", "..\..\..\aControl\aControl\aControl_XML\ac.csproj", "{D43E6C54-2DF5-454E-9566-DFFE2F3A6946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkinPlus", "..\..\..\MaterialSkinPlus\MaterialSkin\MaterialSkinPlus.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResmarkApi", "..\ResmarkApi.csproj", "{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18BF10C8-1489-9FE6-1474-2D3376126CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BF10C8-1489-9FE6-1474-2D3376126CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BF10C8-1489-9FE6-1474-2D3376126CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BF10C8-1489-9FE6-1474-2D3376126CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1241C13-7B13-4D0A-90AA-7A7B8468C109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1241C13-7B13-4D0A-90AA-7A7B8468C109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1241C13-7B13-4D0A-90AA-7A7B8468C109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1241C13-7B13-4D0A-90AA-7A7B8468C109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D43E6C54-2DF5-454E-9566-DFFE2F3A6946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43E6C54-2DF5-454E-9566-DFFE2F3A6946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43E6C54-2DF5-454E-9566-DFFE2F3A6946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43E6C54-2DF5-454E-9566-DFFE2F3A6946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4441AC-A8A9-4442-ABCF-23C79A9D93BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0552BE6A-917E-4667-982D-93E4C2422788}
+	EndGlobalSection
+EndGlobal
