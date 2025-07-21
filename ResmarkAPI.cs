@@ -1,7 +1,7 @@
-using Diagraph.ResmarkApi.Interfaces;
-using Diagraph.ResmarkApi.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Diagraph.ResmarkApi.Interfaces;
+using Diagraph.ResmarkApi.Services;
 using static Diagraph.ResmarkApi.Services.ResmarkPrinterService;
 
 namespace Diagraph.ResmarkApi;
@@ -83,8 +83,10 @@ public class ResmarkAPI
 
     public async Task<byte[]> PathPrintPreview(string messageName, int task = 1)
     {
-        return await _resmarkPrinterService.PathPrintPreviewAsync(_printerId, _ipAddress, _folderName, messageName, task);
-    } 
+        return await _resmarkPrinterService.PathPrintPreviewAsync(_printerId, _ipAddress, _folderName, messageName,
+            task);
+    }
+
     public async Task<string> RecallMessage(string messageName)
     {
         return await _resmarkPrinterService.RecallMessageAsync(_printerId, _ipAddress, messageName);

@@ -225,10 +225,10 @@ public class ResmarkPrinterService : IPrinterService
                 ret.PrinterErrors = new List<string>();
 
             ret.MessageName = "";
-            if (outputArgs.Length > 2 && outputArgs[2].Value != null) ret.MessageName = outputArgs[2].Value +"";
+            if (outputArgs.Length > 2 && outputArgs[2].Value != null) ret.MessageName = outputArgs[2].Value + "";
 
-            if (ret.MessageName.Length>0 && !ret.MessageName.EndsWith(".next"))
-                ret.MessageName+=".next";
+            if (ret.MessageName.Length > 0 && !ret.MessageName.EndsWith(".next"))
+                ret.MessageName += ".next";
         }
         else
         {
@@ -246,8 +246,9 @@ public class ResmarkPrinterService : IPrinterService
         var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
 
         if (response.Success &&
-            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string[] base64Array)
-        { 
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault()
+                .Value is string[] base64Array)
+        {
             var first = base64Array.FirstOrDefault(s => !string.IsNullOrWhiteSpace(s));
             return first != null ? Convert.FromBase64String(first) : Array.Empty<byte>();
         }
@@ -256,13 +257,15 @@ public class ResmarkPrinterService : IPrinterService
     }
 
 
-    public async Task<byte[]> PathPrintPreviewAsync(string printerId, string ipAddress, string folderName, string messageName, int task = 1)
+    public async Task<byte[]> PathPrintPreviewAsync(string printerId, string ipAddress, string folderName,
+        string messageName, int task = 1)
     {
         var request = CreateCallMethodRequest("ns=2;s=PathPrintPreview", task, folderName, messageName);
         var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
 
         if (response.Success &&
-            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string[] base64Array)
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault()
+                .Value is string[] base64Array)
         {
             var first = base64Array.FirstOrDefault(s => !string.IsNullOrWhiteSpace(s));
             return first != null ? Convert.FromBase64String(first) : Array.Empty<byte>();
@@ -279,15 +282,9 @@ public class ResmarkPrinterService : IPrinterService
 
         if (response.Success &&
             response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string xml)
-        {
             return xml;
-        }
 
         return string.Empty;
-    }
-    public class OperationResultString : OperationResult
-    {
-        public string? Value { get; set; }
     }
 
     public async Task<OperationResultString> GetConfigurationAsync(string printerId, string ipAddress)
@@ -297,14 +294,12 @@ public class ResmarkPrinterService : IPrinterService
 
         if (response.Success &&
             response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string configXml)
-        {
             return new OperationResultString
             {
                 Success = true,
                 Message = "Configuration retrieved.",
                 Value = configXml
             };
-        }
 
         return new OperationResultString
         {
@@ -314,7 +309,8 @@ public class ResmarkPrinterService : IPrinterService
         };
     }
 
-    public async Task<OperationResult> SetConfigurationAsync(string printerId, string ipAddress, string configurationXml)
+    public async Task<OperationResult> SetConfigurationAsync(string printerId, string ipAddress,
+        string configurationXml)
     {
         var request = CreateCallMethodRequest("ns=2;s=SetConfiguration", configurationXml);
         var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
@@ -469,5 +465,10 @@ public class ResmarkPrinterService : IPrinterService
             Success = false,
             Error = "Bad request."
         };
+    }
+
+    public class OperationResultString : OperationResult
+    {
+        public string? Value { get; set; }
     }
 }

@@ -3,64 +3,61 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using ResmarkPrinterGroupDemo.Resources;
 
-namespace ResmarkPrinterGroupDemo
+namespace ResmarkPrinterGroupDemo;
+
+public partial class ConfigurationForm : CustomMaterialRoundedForm
 {
-    public partial class ConfigurationForm : CustomMaterialRoundedForm
+    private readonly ResmarkPrinterWrapper _printer;
+
+    public ConfigurationForm(ResmarkPrinterWrapper printer)
     {
-        private readonly ResmarkPrinterWrapper _printer;
+        _printer = printer;
+        InitializeComponent();
 
-        public ConfigurationForm(ResmarkPrinterWrapper printer)
+        Text = Resource.ConfigTitle;
+        btnSave.Text = Resource.ConfigSaveButton;
+        btnCancel.Text = Resource.ConfigCancelButton;
+    }
+
+    private async void ConfigurationForm_Load(object sender, EventArgs e)
+    {
+        try
         {
-            _printer = printer;
-            InitializeComponent();
-             
-            Text = Resource.ConfigTitle;
-            btnSave.Text = Resource.ConfigSaveButton;
-            btnCancel.Text = Resource.ConfigCancelButton;
+            var configXml = await _printer.GetConfiguration();
+            txtConfiguration.Text = configXml;
         }
-
-        private async void ConfigurationForm_Load(object sender, EventArgs e)
+        catch
         {
-            try
-            {
-                var configXml = await _printer.GetConfiguration();
-                txtConfiguration.Text = configXml;
-            }
-            catch
-            {
-                MessageBox.Show(Resource.ConfigLoadError, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show(Resource.ConfigLoadError, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        private async void btnSave_Click(object sender, EventArgs e)
-        {
-            var confirm = MessageBox.Show(
-                Resource.ConfigDangerPrompt,
-                Resource.ConfigTitle,
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+    }
 
-            if (confirm != DialogResult.Yes)
-                return;
+    private async void btnSave_Click(object sender, EventArgs e)
+    {
+        var confirm = MessageBox.Show(
+            Resource.ConfigDangerPrompt,
+            Resource.ConfigTitle,
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+        );
 
-            var newConfig = txtConfiguration.Text;
-            var result = await _printer.SetConfiguration(newConfig);
+        if (confirm != DialogResult.Yes)
+            return;
 
-            if (result.Success)
-            {
-                MessageBox.Show(Resource.ConfigSaved, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(Resource.ConfigSaveError, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        var newConfig = txtConfiguration.Text;
+        var result = await _printer.SetConfiguration(newConfig);
 
-            Close();
-        }
+        if (result.Success)
+            MessageBox.Show(Resource.ConfigSaved, Resource.ConfigTitle, MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        else
+            MessageBox.Show(Resource.ConfigSaveError, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        Close();
+    }
+
+    private void btnCancel_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

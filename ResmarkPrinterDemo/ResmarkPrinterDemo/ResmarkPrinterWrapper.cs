@@ -1,8 +1,7 @@
-using Diagraph.ResmarkApi.Interfaces;
-using Diagraph.ResmarkApi.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static Diagraph.ResmarkApi.Services.ResmarkPrinterService;
+using Diagraph.ResmarkApi.Interfaces;
+using Diagraph.ResmarkApi.Services;
 
 public class ResmarkPrinterWrapper
 {
@@ -37,12 +36,12 @@ public class ResmarkPrinterWrapper
     }
 
     public async Task<string> GetStatusAsync()
-    { 
+    {
         var result = await _service.GetStatusInformationAsync(PrinterId, IpAddress);
         LastStatus = result.Message;
         LastSuccess = result.Success;
         IsConnected = result.Success;
-        
+
         if (result.Success)
         {
             MessageName = result.MessageName;
@@ -128,8 +127,8 @@ public class ResmarkPrinterWrapper
         return await _service.PrintPreviewAsync(PrinterId, IpAddress, messageXml, task);
     }
 
-    public async Task<byte[]> PathPrintPreviewAsync(string messageName, int task = 1, string folderName="/")
-    { 
+    public async Task<byte[]> PathPrintPreviewAsync(string messageName, int task = 1, string folderName = "/")
+    {
         return await _service.PathPrintPreviewAsync(PrinterId, IpAddress, folderName, messageName, task);
     }
 

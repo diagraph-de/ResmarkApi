@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -95,6 +96,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         lblAvailableMessages.Text = Resource.AvailableMessages;
         lblStatusList.Text = Resource.Status;
     }
+
     private void InitStatusTable()
     {
         _statusTable.Clear();
@@ -105,6 +107,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         _statusTable.Columns.Add("Connected");
         _statusTable.Columns.Add("Success");
     }
+
     private void UpdateStatusTable()
     {
         _statusTable.Rows.Clear();
@@ -114,10 +117,12 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             var statusText = printer.Status + Environment.NewLine;
 
             if (printer.PrinterErrors.Count > 0)
-                statusText += Environment.NewLine + "Errors:" + Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrors);
+                statusText += Environment.NewLine + "Errors:" + Environment.NewLine +
+                              string.Join(Environment.NewLine, printer.PrinterErrors);
 
             if (printer.PrinterErrorDetails.Count > 0)
-                statusText += Environment.NewLine + Environment.NewLine + "Details:" + Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrorDetails);
+                statusText += Environment.NewLine + Environment.NewLine + "Details:" + Environment.NewLine +
+                              string.Join(Environment.NewLine, printer.PrinterErrorDetails);
 
             _statusTable.Rows.Add(
                 printer.PrinterId + " - " + printer.IpAddress,
@@ -130,13 +135,9 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             // Color logic based on PrinterErrorDetails count
             var row = gridStatus.Rows[0];
             if (printer.PrinterErrorDetails.Count > 0)
-            {
-                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightCoral; // red
-            }
+                row.DefaultCellStyle.BackColor = Color.LightCoral; // red
             else
-            {
-                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen; // green
-            }
+                row.DefaultCellStyle.BackColor = Color.LightGreen; // green
         }
     }
 
@@ -357,7 +358,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             await wrapper.SetPrintCountAsync(printCount);
             await wrapper.PrintStoredMessageAsync(cboSelectMessage.Text);
             var status = await wrapper.GetStatusAsync();
-            lblStatus.Text = $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{cboSelectMessage.Text}\" – {status}";
+            lblStatus.Text =
+                $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{cboSelectMessage.Text}\" – {status}";
 
             btnRefreshStatus_ClickAsync(this, null);
         }
@@ -385,18 +387,9 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         btnRefreshStatus_ClickAsync(this, null);
     }
 
-    public class FoundPrinter
-    {
-        public string IP { get; set; }
-        public string Detail { get; set; }
-    }
-
     private async void btnRefreshStatus_ClickAsync(object sender, EventArgs e)
     {
-        foreach (var printer in _groupManager.Printers)
-        {
-            await printer.GetStatusAsync();
-        }
+        foreach (var printer in _groupManager.Printers) await printer.GetStatusAsync();
 
         UpdateStatusTable();
     }
@@ -500,11 +493,13 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             File.WriteAllText(filename, xml);
 
             // Notify user
-            MessageBox.Show($"{Resource.MessageSaved}\n{filename}", Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"{Resource.MessageSaved}\n{filename}", Resource.Done, MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"{Resource.ErrorRecall}\n{ex.Message}", Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"{Resource.ErrorRecall}\n{ex.Message}", Resource.Done, MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
 
         LoadMessages();
@@ -538,11 +533,11 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             );
 
             if (confirm == DialogResult.Yes)
-            {
                 try
                 {
                     File.Delete(filename);
-                    MessageBox.Show(Resource.DeleteSuccess, Resource.DeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resource.DeleteSuccess, Resource.DeleteTitle, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -553,13 +548,19 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                         MessageBoxIcon.Error
                     );
                 }
-            }
         }
         else
         {
-            MessageBox.Show(Resource.FileNotFound, Resource.DeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resource.FileNotFound, Resource.DeleteTitle, MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         LoadMessages();
-    } 
-} 
+    }
+
+    public class FoundPrinter
+    {
+        public string IP { get; set; }
+        public string Detail { get; set; }
+    }
+}
