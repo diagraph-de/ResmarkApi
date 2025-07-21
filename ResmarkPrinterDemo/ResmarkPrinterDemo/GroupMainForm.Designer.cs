@@ -72,6 +72,7 @@ namespace ResmarkPrinterGroupDemo
             btnToXML = new FlexButton();
             btnConfig = new FlexButton();
             btnDeleteXML = new FlexButton();
+            btnEditGroupVariables = new FlexButton();
             ((System.ComponentModel.ISupportInitialize)gridStatus).BeginInit();
             SuspendLayout();
             // 
@@ -129,7 +130,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnEditVariables
             // 
-            btnEditVariables.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEditVariables.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditVariables.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnEditVariables.ButtonImage = null;
             btnEditVariables.ButtonText = Resource.EditVariables;
@@ -156,7 +157,7 @@ namespace ResmarkPrinterGroupDemo
             btnEditVariables.IsAutoSizing = false;
             btnEditVariables.IsSelectable = false;
             btnEditVariables.IsSelected = false;
-            btnEditVariables.Location = new System.Drawing.Point(28, 539);
+            btnEditVariables.Location = new System.Drawing.Point(709, 202);
             btnEditVariables.LoggingEnabled = true;
             btnEditVariables.MirrorImage = false;
             btnEditVariables.Name = "btnEditVariables";
@@ -166,7 +167,7 @@ namespace ResmarkPrinterGroupDemo
             btnEditVariables.PrinterGroup_Category = null;
             btnEditVariables.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
             btnEditVariables.PrinterGroup_Name = null;
-            btnEditVariables.Size = new System.Drawing.Size(263, 33);
+            btnEditVariables.Size = new System.Drawing.Size(173, 33);
             btnEditVariables.SupportedPrinter = null;
             btnEditVariables.SuppressSelect = false;
             btnEditVariables.SuppressUpdate = false;
@@ -783,7 +784,7 @@ namespace ResmarkPrinterGroupDemo
             btnPreview.IsAutoSizing = false;
             btnPreview.IsSelectable = false;
             btnPreview.IsSelected = false;
-            btnPreview.Location = new System.Drawing.Point(28, 581);
+            btnPreview.Location = new System.Drawing.Point(28, 540);
             btnPreview.LoggingEnabled = true;
             btnPreview.MirrorImage = false;
             btnPreview.Name = "btnPreview";
@@ -1019,9 +1020,63 @@ namespace ResmarkPrinterGroupDemo
             btnDeleteXML.ViewMode = Diagraph.Controls.ViewMode.Simple;
             btnDeleteXML.Click += btnDeleteXML_Click;
             // 
+            // btnEditGroupVariables
+            // 
+            btnEditGroupVariables.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEditGroupVariables.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnEditGroupVariables.ButtonImage = null;
+            btnEditGroupVariables.ButtonText = "Variables (Group)";
+            btnEditGroupVariables.CanGetFocus = true;
+            btnEditGroupVariables.CenterText = false;
+            btnEditGroupVariables.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnEditGroupVariables.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnEditGroupVariables.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnEditGroupVariables.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnEditGroupVariables.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnEditGroupVariables.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnEditGroupVariables.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnEditGroupVariables.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnEditGroupVariables.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnEditGroupVariables.ControlText = "Variables (Group)";
+            btnEditGroupVariables.CornerRadius = 4;
+            btnEditGroupVariables.DriverAssignmentKeys = null;
+            btnEditGroupVariables.EnableBlink = false;
+            btnEditGroupVariables.FlatStyle = FlatStyle.Flat;
+            btnEditGroupVariables.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnEditGroupVariables.GradientPosition = 0.4F;
+            btnEditGroupVariables.ImageAboveText = false;
+            btnEditGroupVariables.ImageHeight = 0;
+            btnEditGroupVariables.IsAutoSizing = false;
+            btnEditGroupVariables.IsSelectable = false;
+            btnEditGroupVariables.IsSelected = false;
+            btnEditGroupVariables.Location = new System.Drawing.Point(28, 579);
+            btnEditGroupVariables.LoggingEnabled = true;
+            btnEditGroupVariables.MirrorImage = false;
+            btnEditGroupVariables.Name = "btnEditGroupVariables";
+            btnEditGroupVariables.Password_Category = null;
+            btnEditGroupVariables.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnEditGroupVariables.Password_Name = null;
+            btnEditGroupVariables.PrinterGroup_Category = null;
+            btnEditGroupVariables.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnEditGroupVariables.PrinterGroup_Name = null;
+            btnEditGroupVariables.Size = new System.Drawing.Size(263, 33);
+            btnEditGroupVariables.SupportedPrinter = null;
+            btnEditGroupVariables.SuppressSelect = false;
+            btnEditGroupVariables.SuppressUpdate = false;
+            btnEditGroupVariables.TabIndex = 26;
+            btnEditGroupVariables.Text = "Variables (Group)";
+            btnEditGroupVariables.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnEditGroupVariables.TextCorrection = 0;
+            btnEditGroupVariables.UpdateEnabled = true;
+            btnEditGroupVariables.UseMouseOver = false;
+            btnEditGroupVariables.VersionKey = null;
+            btnEditGroupVariables.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnEditGroupVariables.Click += btnEditGroupVariables_Click;
+            // 
             // GroupMainForm
             // 
             ClientSize = new System.Drawing.Size(909, 662);
+            Controls.Add(btnEditGroupVariables);
             Controls.Add(btnDeleteXML);
             Controls.Add(btnConfig);
             Controls.Add(btnToXML);
@@ -1071,5 +1126,6 @@ namespace ResmarkPrinterGroupDemo
         private FlexButton btnToXML;
         private FlexButton btnConfig;
         private FlexButton btnDeleteXML;
+        private FlexButton btnEditGroupVariables;
     }
 }

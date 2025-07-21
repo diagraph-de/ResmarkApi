@@ -196,6 +196,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variables (Group) ähnelt.
+        /// </summary>
+        internal static string EditGroupVariables {
+            get {
+                return ResourceManager.GetString("EditGroupVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Edit Variables ähnelt.
         /// </summary>
         internal static string EditVariables {
@@ -246,6 +255,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string FoundPrinters {
             get {
                 return ResourceManager.GetString("FoundPrinters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Group Variables ähnelt.
+        /// </summary>
+        internal static string GroupVariablesTitle {
+            get {
+                return ResourceManager.GetString("GroupVariablesTitle", resourceCulture);
             }
         }
         
@@ -516,6 +534,24 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variables saved. ähnelt.
+        /// </summary>
+        internal static string VariablesSaved {
+            get {
+                return ResourceManager.GetString("VariablesSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variables – {0} ähnelt.
+        /// </summary>
+        internal static string VariablesTitle {
+            get {
+                return ResourceManager.GetString("VariablesTitle", resourceCulture);
             }
         }
     }

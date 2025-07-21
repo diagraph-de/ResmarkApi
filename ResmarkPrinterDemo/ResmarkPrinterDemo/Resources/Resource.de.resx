@@ -156,6 +156,9 @@
   <data name="EditVariables" xml:space="preserve">
     <value>Variablen bearbeiten</value>
   </data>
+  <data name="EditGroupVariables" xml:space="preserve">
+    <value>Variablen (Gruppe)</value>
+  </data>
   <data name="NoPrintersFound" xml:space="preserve">
     <value>Keine neuen Drucker gefunden</value>
   </data>
@@ -270,4 +273,17 @@
   <data name="ConfigDangerPrompt" xml:space="preserve">
     <value>Warnung: Ungültige Einträge in dieser Konfiguration können das System beschädigen. Möchten Sie wirklich fortfahren?</value>
   </data>
+  <data name="VariablesSaved" xml:space="preserve">
+  <value>Variablen gespeichert.</value>
+</data>
+  <data name="Done" xml:space="preserve">
+  <value>Fertig</value>
+</data>
+  <data name="GroupVariablesTitle" xml:space="preserve">
+  <value>Gruppenvariablen</value>
+</data>
+  <data name="VariablesTitle" xml:space="preserve">
+  <value>Variablen – {0}</value>
+</data>
+
 </root>

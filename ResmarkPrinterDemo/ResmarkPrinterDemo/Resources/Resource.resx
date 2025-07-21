@@ -156,6 +156,9 @@
   <data name="EditVariables" xml:space="preserve">
     <value>Edit Variables</value>
   </data>
+  <data name="EditGroupVariables" xml:space="preserve">
+    <value>Variables (Group)</value>
+  </data>
   <data name="NoPrintersFound" xml:space="preserve">
     <value>No new printers found</value>
   </data>
@@ -270,4 +273,17 @@
   <data name="ConfigDangerPrompt" xml:space="preserve">
     <value>Warning: Invalid entries in this configuration may cause system malfunction. Do you really want to continue?</value>
   </data>
+  <data name="VariablesSaved" xml:space="preserve">
+  <value>Variables saved.</value>
+</data>
+  <data name="Done" xml:space="preserve">
+  <value>Done</value>
+</data>
+  <data name="GroupVariablesTitle" xml:space="preserve">
+  <value>Group Variables</value>
+</data>
+  <data name="VariablesTitle" xml:space="preserve">
+  <value>Variables – {0}</value>
+</data>
+
 </root>

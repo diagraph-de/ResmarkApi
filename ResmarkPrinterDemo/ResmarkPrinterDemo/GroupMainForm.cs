@@ -1,3 +1,8 @@
+using Diagraph.ResmarkApi;
+using Diagraph.ResmarkApi.Services;
+using MaterialSkin.Controls;
+using ResmarkPrinterGroupDemo.Properties;
+using ResmarkPrinterGroupDemo.Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -6,15 +11,11 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Diagraph.ResmarkApi;
-using Diagraph.ResmarkApi.Services;
-using MaterialSkin.Controls;
-using ResmarkPrinterGroupDemo.Properties;
-using ResmarkPrinterGroupDemo.Resources;
 
 namespace ResmarkPrinterGroupDemo;
 
@@ -95,6 +96,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         lblStatus.Text = Resource.StatusReady;
         lblAvailableMessages.Text = Resource.AvailableMessages;
         lblStatusList.Text = Resource.Status;
+        btnEditGroupVariables.Text = Resource.EditGroupVariables;
     }
 
     private void InitStatusTable()
@@ -254,20 +256,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
 
         UpdateStatusTable();
     }
-
-    private void EditSelectedPrinterVariables()
-    {
-        if (listPrinters.SelectedItem is not string printer) return;
-
-        var id = printer.Split("-")[0].Trim();
-        var ip = printer.Split("-")[1].Trim();
-
-        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
-        var form = new VariableEditorForm(wrapper);
-        form.ShowDialog();
-
-        lblStatus.Text = Resource.StatusEditVariables;
-    }
+     
 
     private void btnRemovePrinter_Click(object sender, EventArgs e)
     {
@@ -292,13 +281,23 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     private void btnSendMessage_Click(object sender, EventArgs e)
     {
         SendMessageToAll();
+
         Thread.Sleep(1000); // Wait for status updates
         btnRefreshStatus_ClickAsync(this, null);
     }
 
     private void btnEditVariables_Click(object sender, EventArgs e)
     {
-        EditSelectedPrinterVariables();
+        if (listPrinters.SelectedItem is not string printer) return;
+
+        var id = printer.Split("-")[0].Trim();
+        var ip = printer.Split("-")[1].Trim();
+
+        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
+        var form = new VariableEditorForm(wrapper);
+        form.ShowDialog();
+
+        lblStatus.Text = Resource.StatusEditVariables;
     }
 
     private void GroupMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -563,4 +562,47 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         public string IP { get; set; }
         public string Detail { get; set; }
     }
+
+    private async void btnEditGroupVariables_Click(object sender, EventArgs e)
+    {
+        if (_groupManager.Printers.Count == 0)
+        {
+            MessageBox.Show(Resource.NoPrintersFound, Resource.GroupVariablesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+         
+        var templatePrinter = _groupManager.Printers.FirstOrDefault(p => p.IsConnected);
+        if (templatePrinter == null)
+        {
+            MessageBox.Show(Resource.ConnectionFailed, Resource.GroupVariablesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (listPrinters.SelectedItem is not string p) return;
+
+        var id = p.Split("-")[0].Trim();
+        var ip = p.Split("-")[1].Trim();
+
+        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip); 
+        var initialVars = await templatePrinter.GetVariablesAsync();
+        var editedVars = new Dictionary<string, string>(initialVars);
+         
+        using var form = new VariableEditorForm(editedVars, wrapper);
+        if (form.ShowDialog() != DialogResult.OK)
+            return;
+          
+        lblStatus.Text = Resource.StatusSending;
+
+        foreach (var printer in _groupManager.Printers)
+        {
+            foreach (var kv in editedVars)
+                await printer.SetVariableAsync(kv.Key, kv.Value);
+        }
+        
+        MessageBox.Show(Resource.VariablesSaved, Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        Thread.Sleep(1000);
+        btnRefreshStatus_ClickAsync(this, null);
+    }
+
 }
