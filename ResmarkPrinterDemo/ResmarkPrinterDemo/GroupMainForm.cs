@@ -95,17 +95,16 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         lblAvailableMessages.Text = Resource.AvailableMessages;
         lblStatusList.Text = Resource.Status;
     }
-
     private void InitStatusTable()
     {
         _statusTable.Clear();
         _statusTable.Columns.Clear();
         _statusTable.Columns.Add("IP");
+        _statusTable.Columns.Add("Message"); // neue Spalte
         _statusTable.Columns.Add("Status");
         _statusTable.Columns.Add("Connected");
         _statusTable.Columns.Add("Success");
     }
-
     private void UpdateStatusTable()
     {
         _statusTable.Rows.Clear();
@@ -115,13 +114,14 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             var statusText = printer.Status + Environment.NewLine;
 
             if (printer.PrinterErrors.Count > 0)
-                statusText += Environment.NewLine + "Errors:" + Environment .NewLine + string.Join(Environment.NewLine, printer.PrinterErrors);
+                statusText += Environment.NewLine + "Errors:" + Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrors);
 
             if (printer.PrinterErrorDetails.Count > 0)
                 statusText += Environment.NewLine + Environment.NewLine + "Details:" + Environment.NewLine + string.Join(Environment.NewLine, printer.PrinterErrorDetails);
 
             _statusTable.Rows.Add(
                 printer.PrinterId + " - " + printer.IpAddress,
+                printer.MessageName,
                 statusText,
                 printer.IsConnected ? "✓" : "✗",
                 printer.LastSuccess ? "✓" : "✗"
@@ -138,7 +138,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                 row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen; // green
             }
         }
-    } 
+    }
 
     private void LoadMessages()
     {
@@ -291,6 +291,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     private void btnSendMessage_Click(object sender, EventArgs e)
     {
         SendMessageToAll();
+        btnRefreshStatus_ClickAsync(this, null);
     }
 
     private void btnEditVariables_Click(object sender, EventArgs e)
@@ -358,7 +359,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             lblStatus.Text = $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{cboSelectMessage.Text}\" – {status}";
 
             btnRefreshStatus_ClickAsync(this, null);
-        } 
+        }
     }
 
 
@@ -396,6 +397,116 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             await printer.GetStatusAsync();
         }
 
-        UpdateStatusTable(); 
+        UpdateStatusTable();
     }
+
+    private void btnPreview_Click(object sender, EventArgs e)
+    {
+        if (cmbMessages.SelectedItem == null)
+        {
+            MessageBox.Show(Resource.SelectMessage);
+            return;
+        }
+
+        if (listPrinters.SelectedItem is not string printerKey) return;
+        var wrapper = _groupManager.GetPrinter(printerKey);
+        if (wrapper == null) return;
+
+        var fileName = cmbMessages.SelectedItem.ToString();
+        var folder = Environment.ExpandEnvironmentVariables(Settings.Default.MessageFolderPath);
+        var path = Path.Combine(folder, fileName);
+
+        if (!File.Exists(path))
+        {
+            MessageBox.Show(Resource.FileNotFound);
+            return;
+        }
+
+        var xml = File.ReadAllText(path);
+        var previewForm = new MessagePreviewForm(wrapper, xml);
+        previewForm.ShowDialog();
+    }
+
+    private async void btnPathPreviewMessage_Click(object sender, EventArgs e)
+    {
+        if (cboSelectMessage.SelectedItem == null)
+        {
+            MessageBox.Show(Resource.SelectMessage);
+            return;
+        }
+
+        if (listPrinters.SelectedItem is not string printerKey) return;
+        var wrapper = _groupManager.GetPrinter(printerKey);
+        if (wrapper == null) return;
+
+        var messageName = cboSelectMessage.SelectedItem.ToString();
+        if (string.IsNullOrWhiteSpace(messageName))
+        {
+            MessageBox.Show(Resource.SelectMessage);
+            return;
+        }
+
+        try
+        {
+            var imageData = await wrapper.PathPrintPreviewAsync(messageName);
+            if (imageData != null && imageData.Length > 0)
+            {
+                var previewForm = new MessagePreviewFormImageOnly(imageData);
+                previewForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(Resource.ErrorPreview);
+            }
+        }
+        catch
+        {
+            MessageBox.Show(Resource.ErrorPreview);
+        }
+    }
+
+    private async void btnToXML_Click(object sender, EventArgs e)
+    {
+        // Ensure a printer is selected
+        if (listPrinters.SelectedItem is not string printer)
+            return;
+
+        // Split printer string into UID and IP address
+        var parts = printer.Split("-");
+        if (parts.Length != 2)
+            return;
+
+        var id = parts[0].Trim();
+        var ip = parts[1].Trim();
+
+        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
+         
+        try
+        {
+            // Attempt to recall the active message
+            var xml = await wrapper.RecallMessageAsync(cboSelectMessage.Text);
+            if (string.IsNullOrWhiteSpace(xml))
+            {
+                MessageBox.Show(Resource.ErrorEmptyRecall, Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Get the configured output folder path
+            var folder = Environment.ExpandEnvironmentVariables(Settings.Default.MessageFolderPath);
+            Directory.CreateDirectory(folder); // Ensure directory exists
+
+            var filename = Path.Combine(folder, cboSelectMessage.Text);
+            File.WriteAllText(filename, xml);
+
+            // Notify user
+            MessageBox.Show($"{Resource.MessageSaved}\n{filename}", Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"{Resource.ErrorRecall}\n{ex.Message}", Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        LoadMessages();
+    }
+
 }

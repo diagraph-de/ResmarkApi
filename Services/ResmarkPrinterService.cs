@@ -234,6 +234,52 @@ public class ResmarkPrinterService : IPrinterService
         return ret;
     }
 
+    public async Task<byte[]> PrintPreviewAsync(string printerId, string ipAddress, string prdXml, int task = 1)
+    {
+        var request = CreateCallMethodRequest("ns=2;s=PrintPreview", prdXml, task);
+        var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+        if (response.Success &&
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string[] base64Array)
+        { 
+            var first = base64Array.FirstOrDefault(s => !string.IsNullOrWhiteSpace(s));
+            return first != null ? Convert.FromBase64String(first) : Array.Empty<byte>();
+        }
+
+        return Array.Empty<byte>();
+    }
+
+
+    public async Task<byte[]> PathPrintPreviewAsync(string printerId, string ipAddress, string folderName, string messageName, int task = 1)
+    {
+        var request = CreateCallMethodRequest("ns=2;s=PathPrintPreview", task, folderName, messageName);
+        var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+        if (response.Success &&
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string[] base64Array)
+        {
+            var first = base64Array.FirstOrDefault(s => !string.IsNullOrWhiteSpace(s));
+            return first != null ? Convert.FromBase64String(first) : Array.Empty<byte>();
+        }
+
+        return Array.Empty<byte>();
+    }
+
+
+    public async Task<string> RecallMessageAsync(string printerId, string ipAddress, string messageName)
+    {
+        var request = CreateCallMethodRequest("ns=2;s=RecallMessage", messageName);
+        var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+        if (response.Success &&
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string xml)
+        {
+            return xml;
+        }
+
+        return string.Empty;
+    }
+
 
     private CallMethodRequest CreateCallMethodRequest(string methodId, params object[] args)
     {

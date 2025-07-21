@@ -1,8 +1,7 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using Diagraph.ResmarkApi.Services;
+using System.Windows.Forms; 
 using MaterialSkin.Controls;
 
 namespace ResmarkPrinterGroupDemo
@@ -36,6 +35,12 @@ namespace ResmarkPrinterGroupDemo
                 table.Rows.Add(kv.Key, kv.Value);
 
             dataGridVariables.DataSource = table;
+
+            if (dataGridVariables.Columns.Count >= 2)
+            {
+                dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; // „Name“
+                dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;     // „Wert“
+            }
         }
 
         private async void btnSave_Click(object sender, EventArgs e)

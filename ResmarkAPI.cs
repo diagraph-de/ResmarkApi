@@ -74,4 +74,18 @@ public class ResmarkAPI
     {
         return await _resmarkPrinterService.GetStatusInformationAsync(_printerId, _ipAddress);
     }
+
+    public async Task<byte[]> PrintPreview(string messageXml, int task = 1)
+    {
+        return await _resmarkPrinterService.PrintPreviewAsync(_printerId, _ipAddress, messageXml, task);
+    }
+
+    public async Task<byte[]> PathPrintPreview(string messageName, int task = 1)
+    {
+        return await _resmarkPrinterService.PathPrintPreviewAsync(_printerId, _ipAddress, _folderName, messageName, task);
+    } 
+    public async Task<string> RecallMessage(string messageName)
+    {
+        return await _resmarkPrinterService.RecallMessageAsync(_printerId, _ipAddress, messageName);
+    }
 }

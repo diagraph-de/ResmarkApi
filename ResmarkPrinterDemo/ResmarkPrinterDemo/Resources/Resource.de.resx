@@ -210,4 +210,63 @@
   <data name="StatusRefreshed" xml:space="preserve">
     <value>Status aktualisiert</value>
   </data>
+  <data name="PreviewTitle" xml:space="preserve">
+  <value>Nachrichtenvorschau</value>
+</data>
+  <data name="Print" xml:space="preserve">
+  <value>Drucken</value>
+</data>
+  <data name="PrintSuccess" xml:space="preserve">
+  <value>Nachricht erfolgreich gesendet.</value>
+</data>
+  <data name="Done" xml:space="preserve">
+  <value>Fertig</value>
+</data>
+  <data name="ErrorPreview" xml:space="preserve">
+  <value>Fehler beim Laden der Vorschau</value>
+</data>
+  <data name="PreviewTitle" xml:space="preserve">
+  <value>Vorschau</value>
+</data>
+  <data name="Print" xml:space="preserve">
+  <value>Drucken</value>
+</data>
+  <data name="ErrorPreview" xml:space="preserve">
+  <value>Fehler beim Laden der Vorschau</value>
+</data>
+  <data name="PrintSuccess" xml:space="preserve">
+  <value>Nachricht erfolgreich gedruckt.</value>
+</data>
+  <data name="Done" xml:space="preserve">
+  <value>Fertig</value>
+</data>
+  <data name="SelectMessage" xml:space="preserve"><value>Bitte zuerst eine Nachrichtendatei auswählen.</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>Ausgewählte Nachrichtendatei wurde nicht gefunden.</value></data>
+  <data name="ErrorPreview" xml:space="preserve"><value>Vorschau konnte nicht geladen werden.</value></data>
+  <data name="SelectMessage" xml:space="preserve"><value>Bitte zuerst eine Nachricht auswählen.</value></data>
+  <data name="PreviewTitle" xml:space="preserve">
+    <value>Nachrichtenvorschau</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Drucken</value>
+  </data>
+  <data name="ErrorPreview" xml:space="preserve">
+    <value>Vorschaubild konnte nicht geladen werden.</value>
+  </data>
+  <data name="PrintSuccess" xml:space="preserve">
+    <value>Nachricht wurde erfolgreich an den Drucker gesendet.</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="MessageSaved" xml:space="preserve">
+    <value>Nachricht gespeichert:</value>
+  </data>
+  <data name="ErrorRecall" xml:space="preserve">
+    <value>Nachricht konnte nicht geladen oder gespeichert werden:</value>
+  </data>
+  <data name="ErrorEmptyRecall" xml:space="preserve">
+    <value>Die Nachricht ist leer oder konnte nicht geladen werden.</value>
+  </data>
+
 </root>

@@ -88,11 +88,56 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Done ähnelt.
+        /// </summary>
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Edit Variables ähnelt.
         /// </summary>
         internal static string EditVariables {
             get {
                 return ResourceManager.GetString("EditVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The message is empty or could not be recalled. ähnelt.
+        /// </summary>
+        internal static string ErrorEmptyRecall {
+            get {
+                return ResourceManager.GetString("ErrorEmptyRecall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to load preview image. ähnelt.
+        /// </summary>
+        internal static string ErrorPreview {
+            get {
+                return ResourceManager.GetString("ErrorPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to recall or save message: ähnelt.
+        /// </summary>
+        internal static string ErrorRecall {
+            get {
+                return ResourceManager.GetString("ErrorRecall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Selected message file not found. ähnelt.
+        /// </summary>
+        internal static string FileNotFound {
+            get {
+                return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
         
@@ -115,6 +160,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Message saved: ähnelt.
+        /// </summary>
+        internal static string MessageSaved {
+            get {
+                return ResourceManager.GetString("MessageSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No Printers found ähnelt.
         /// </summary>
         internal static string NoPrintersFound {
@@ -129,6 +183,24 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string Pause {
             get {
                 return ResourceManager.GetString("Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Message Preview ähnelt.
+        /// </summary>
+        internal static string PreviewTitle {
+            get {
+                return ResourceManager.GetString("PreviewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Print ähnelt.
+        /// </summary>
+        internal static string Print {
+            get {
+                return ResourceManager.GetString("Print", resourceCulture);
             }
         }
         
@@ -156,6 +228,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string Printers {
             get {
                 return ResourceManager.GetString("Printers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Message was sent to printer successfully. ähnelt.
+        /// </summary>
+        internal static string PrintSuccess {
+            get {
+                return ResourceManager.GetString("PrintSuccess", resourceCulture);
             }
         }
         
@@ -196,7 +277,7 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Please select a message file. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please select a message first. ähnelt.
         /// </summary>
         internal static string SelectMessage {
             get {

@@ -21,6 +21,7 @@ public class ResmarkPrinterWrapper
 
     public string Status { get; private set; } = "";
     public int EncoderSpeed { get; private set; }
+    public string MessageName { get; private set; }
     public List<string> PrinterErrors { get; private set; } = new();
     public List<string> PrinterErrorDetails { get; private set; } = new();
 
@@ -118,4 +119,19 @@ public class ResmarkPrinterWrapper
         LastSuccess = result.Success;
         return result.Success ? result.List : new List<string>();
     }
+
+    public async Task<byte[]> PrintPreviewAsync(string messageXml, int task = 1)
+    {
+        return await _service.PrintPreviewAsync(PrinterId, IpAddress, messageXml, task);
+    }
+
+    public async Task<byte[]> PathPrintPreviewAsync(string messageName, int task = 1, string folderName="/")
+    { 
+        return await _service.PathPrintPreviewAsync(PrinterId, IpAddress, folderName, messageName, task);
+    }
+
+    public async Task<string> RecallMessageAsync(string messageName)
+    {
+        return await _service.RecallMessageAsync(PrinterId, IpAddress, messageName);
+    } 
 }

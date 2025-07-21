@@ -25,7 +25,7 @@ namespace ResmarkPrinterGroupDemo.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%LOCALAPPDATA%\\\\Diagraph\\\\ResmarkManager")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%LOCALAPPDATA%\\Diagraph\\ResmarkManager")]
         public string MessageFolderPath {
             get {
                 return ((string)(this["MessageFolderPath"]));

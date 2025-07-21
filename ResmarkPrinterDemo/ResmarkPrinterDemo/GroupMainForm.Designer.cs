@@ -66,6 +66,9 @@ namespace ResmarkPrinterGroupDemo
             lblMessage = new MaterialLabel();
             lblStatusList = new MaterialLabel();
             btnRefreshStatus = new FlexButton();
+            btnPreview = new FlexButton();
+            btnPathPreviewMessage = new FlexButton();
+            btnToXML = new FlexButton();
             ((System.ComponentModel.ISupportInitialize)gridStatus).BeginInit();
             SuspendLayout();
             // 
@@ -97,7 +100,7 @@ namespace ResmarkPrinterGroupDemo
             btnAddPrinter.IsAutoSizing = false;
             btnAddPrinter.IsSelectable = false;
             btnAddPrinter.IsSelected = false;
-            btnAddPrinter.Location = new System.Drawing.Point(341, 202);
+            btnAddPrinter.Location = new System.Drawing.Point(325, 202);
             btnAddPrinter.LoggingEnabled = true;
             btnAddPrinter.MirrorImage = false;
             btnAddPrinter.Name = "btnAddPrinter";
@@ -150,7 +153,7 @@ namespace ResmarkPrinterGroupDemo
             btnEditVariables.IsAutoSizing = false;
             btnEditVariables.IsSelectable = false;
             btnEditVariables.IsSelected = false;
-            btnEditVariables.Location = new System.Drawing.Point(23, 556);
+            btnEditVariables.Location = new System.Drawing.Point(33, 586);
             btnEditVariables.LoggingEnabled = true;
             btnEditVariables.MirrorImage = false;
             btnEditVariables.Name = "btnEditVariables";
@@ -160,7 +163,7 @@ namespace ResmarkPrinterGroupDemo
             btnEditVariables.PrinterGroup_Category = null;
             btnEditVariables.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
             btnEditVariables.PrinterGroup_Name = null;
-            btnEditVariables.Size = new System.Drawing.Size(300, 33);
+            btnEditVariables.Size = new System.Drawing.Size(316, 33);
             btnEditVariables.SupportedPrinter = null;
             btnEditVariables.SuppressSelect = false;
             btnEditVariables.SuppressUpdate = false;
@@ -202,7 +205,7 @@ namespace ResmarkPrinterGroupDemo
             btnRemovePrinter.IsAutoSizing = false;
             btnRemovePrinter.IsSelectable = false;
             btnRemovePrinter.IsSelected = false;
-            btnRemovePrinter.Location = new System.Drawing.Point(515, 290);
+            btnRemovePrinter.Location = new System.Drawing.Point(515, 299);
             btnRemovePrinter.LoggingEnabled = true;
             btnRemovePrinter.MirrorImage = false;
             btnRemovePrinter.Name = "btnRemovePrinter";
@@ -254,7 +257,7 @@ namespace ResmarkPrinterGroupDemo
             btnScan.IsAutoSizing = false;
             btnScan.IsSelectable = false;
             btnScan.IsSelected = false;
-            btnScan.Location = new System.Drawing.Point(23, 290);
+            btnScan.Location = new System.Drawing.Point(23, 299);
             btnScan.LoggingEnabled = true;
             btnScan.MirrorImage = false;
             btnScan.Name = "btnScan";
@@ -264,7 +267,7 @@ namespace ResmarkPrinterGroupDemo
             btnScan.PrinterGroup_Category = null;
             btnScan.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
             btnScan.PrinterGroup_Name = null;
-            btnScan.Size = new System.Drawing.Size(300, 33);
+            btnScan.Size = new System.Drawing.Size(268, 33);
             btnScan.SupportedPrinter = null;
             btnScan.SuppressSelect = false;
             btnScan.SuppressUpdate = false;
@@ -306,7 +309,7 @@ namespace ResmarkPrinterGroupDemo
             btnSendMessage.IsAutoSizing = false;
             btnSendMessage.IsSelectable = false;
             btnSendMessage.IsSelected = false;
-            btnSendMessage.Location = new System.Drawing.Point(23, 482);
+            btnSendMessage.Location = new System.Drawing.Point(208, 492);
             btnSendMessage.LoggingEnabled = true;
             btnSendMessage.MirrorImage = false;
             btnSendMessage.Name = "btnSendMessage";
@@ -316,7 +319,7 @@ namespace ResmarkPrinterGroupDemo
             btnSendMessage.PrinterGroup_Category = null;
             btnSendMessage.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
             btnSendMessage.PrinterGroup_Name = null;
-            btnSendMessage.Size = new System.Drawing.Size(300, 33);
+            btnSendMessage.Size = new System.Drawing.Size(141, 33);
             btnSendMessage.SupportedPrinter = null;
             btnSendMessage.SuppressSelect = false;
             btnSendMessage.SuppressUpdate = false;
@@ -334,17 +337,18 @@ namespace ResmarkPrinterGroupDemo
             // 
             cmbLanguage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbLanguage.Location = new System.Drawing.Point(825, 85);
+            cmbLanguage.Location = new System.Drawing.Point(790, 33);
             cmbLanguage.Name = "cmbLanguage";
-            cmbLanguage.Size = new System.Drawing.Size(150, 23);
+            cmbLanguage.Size = new System.Drawing.Size(115, 23);
             cmbLanguage.TabIndex = 14;
             // 
             // cmbMessages
             // 
             cmbMessages.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMessages.Location = new System.Drawing.Point(23, 402);
+            cmbMessages.Font = new System.Drawing.Font("Segoe UI", 14F);
+            cmbMessages.Location = new System.Drawing.Point(33, 492);
             cmbMessages.Name = "cmbMessages";
-            cmbMessages.Size = new System.Drawing.Size(300, 23);
+            cmbMessages.Size = new System.Drawing.Size(169, 33);
             cmbMessages.TabIndex = 8;
             // 
             // gridStatus
@@ -353,22 +357,22 @@ namespace ResmarkPrinterGroupDemo
             gridStatus.AllowUserToDeleteRows = false;
             gridStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gridStatus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridStatus.Location = new System.Drawing.Point(389, 402);
+            gridStatus.Location = new System.Drawing.Point(389, 452);
             gridStatus.Name = "gridStatus";
             gridStatus.ReadOnly = true;
-            gridStatus.Size = new System.Drawing.Size(586, 187);
+            gridStatus.Size = new System.Drawing.Size(501, 167);
             gridStatus.TabIndex = 15;
             // 
             // lblStatus
             // 
+            lblStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblStatus.Depth = 0;
-            lblStatus.Dock = DockStyle.Bottom;
             lblStatus.Font = new System.Drawing.Font("Roboto", 11F);
             lblStatus.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblStatus.Location = new System.Drawing.Point(0, 616);
+            lblStatus.Location = new System.Drawing.Point(23, 637);
             lblStatus.MouseState = MaterialSkinPlus.MouseState.HOVER;
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new System.Drawing.Size(1002, 23);
+            lblStatus.Size = new System.Drawing.Size(867, 23);
             lblStatus.TabIndex = 12;
             lblStatus.Text = "Status: ready";
             // 
@@ -384,15 +388,16 @@ namespace ResmarkPrinterGroupDemo
             // 
             listScanResults.Location = new System.Drawing.Point(23, 145);
             listScanResults.Name = "listScanResults";
-            listScanResults.Size = new System.Drawing.Size(300, 139);
+            listScanResults.Size = new System.Drawing.Size(268, 139);
             listScanResults.TabIndex = 6;
             listScanResults.DoubleClick += listScanResults_DoubleClick;
             // 
             // txtPrintCount
             // 
+            txtPrintCount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPrintCount.Depth = 0;
             txtPrintCount.Hint = null;
-            txtPrintCount.Location = new System.Drawing.Point(123, 442);
+            txtPrintCount.Location = new System.Drawing.Point(790, 313);
             txtPrintCount.MaxLength = 32767;
             txtPrintCount.MouseState = MaterialSkinPlus.MouseState.HOVER;
             txtPrintCount.Name = "txtPrintCount";
@@ -408,10 +413,11 @@ namespace ResmarkPrinterGroupDemo
             // 
             // lblPrintCount
             // 
+            lblPrintCount.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPrintCount.Depth = 0;
             lblPrintCount.Font = new System.Drawing.Font("Roboto", 11F);
             lblPrintCount.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblPrintCount.Location = new System.Drawing.Point(23, 442);
+            lblPrintCount.Location = new System.Drawing.Point(646, 313);
             lblPrintCount.MouseState = MaterialSkinPlus.MouseState.HOVER;
             lblPrintCount.Name = "lblPrintCount";
             lblPrintCount.Size = new System.Drawing.Size(100, 23);
@@ -432,6 +438,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnPause
             // 
+            btnPause.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPause.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnPause.ButtonImage = null;
             btnPause.ButtonText = Resource.Pause;
@@ -458,7 +465,7 @@ namespace ResmarkPrinterGroupDemo
             btnPause.IsAutoSizing = false;
             btnPause.IsSelectable = false;
             btnPause.IsSelected = false;
-            btnPause.Location = new System.Drawing.Point(634, 145);
+            btnPause.Location = new System.Drawing.Point(651, 187);
             btnPause.LoggingEnabled = true;
             btnPause.MirrorImage = false;
             btnPause.Name = "btnPause";
@@ -484,6 +491,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnResume
             // 
+            btnResume.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnResume.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnResume.ButtonImage = null;
             btnResume.ButtonText = Resource.Resume;
@@ -510,7 +518,7 @@ namespace ResmarkPrinterGroupDemo
             btnResume.IsAutoSizing = false;
             btnResume.IsSelectable = false;
             btnResume.IsSelected = false;
-            btnResume.Location = new System.Drawing.Point(634, 184);
+            btnResume.Location = new System.Drawing.Point(651, 227);
             btnResume.LoggingEnabled = true;
             btnResume.MirrorImage = false;
             btnResume.Name = "btnResume";
@@ -536,6 +544,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnStop
             // 
+            btnStop.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnStop.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnStop.ButtonImage = null;
             btnStop.ButtonText = Resource.Stop;
@@ -562,7 +571,7 @@ namespace ResmarkPrinterGroupDemo
             btnStop.IsAutoSizing = false;
             btnStop.IsSelectable = false;
             btnStop.IsSelected = false;
-            btnStop.Location = new System.Drawing.Point(634, 224);
+            btnStop.Location = new System.Drawing.Point(651, 267);
             btnStop.LoggingEnabled = true;
             btnStop.MirrorImage = false;
             btnStop.Name = "btnStop";
@@ -588,18 +597,21 @@ namespace ResmarkPrinterGroupDemo
             // 
             // cboSelectMessage
             // 
+            cboSelectMessage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboSelectMessage.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboSelectMessage.Location = new System.Drawing.Point(753, 171);
+            cboSelectMessage.Font = new System.Drawing.Font("Segoe UI", 14F);
+            cboSelectMessage.Location = new System.Drawing.Point(651, 145);
             cboSelectMessage.Name = "cboSelectMessage";
-            cboSelectMessage.Size = new System.Drawing.Size(222, 23);
+            cboSelectMessage.Size = new System.Drawing.Size(245, 33);
             cboSelectMessage.TabIndex = 17;
             // 
             // lblAvailableMessages
             // 
+            lblAvailableMessages.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblAvailableMessages.Depth = 0;
             lblAvailableMessages.Font = new System.Drawing.Font("Roboto", 11F);
             lblAvailableMessages.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblAvailableMessages.Location = new System.Drawing.Point(751, 145);
+            lblAvailableMessages.Location = new System.Drawing.Point(651, 119);
             lblAvailableMessages.MouseState = MaterialSkinPlus.MouseState.HOVER;
             lblAvailableMessages.Name = "lblAvailableMessages";
             lblAvailableMessages.Size = new System.Drawing.Size(200, 23);
@@ -608,6 +620,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // btnSelectMessage
             // 
+            btnSelectMessage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSelectMessage.BlinkType = Diagraph.Controls.Global.ErrorType.None;
             btnSelectMessage.ButtonImage = null;
             btnSelectMessage.ButtonText = "Select Message";
@@ -634,7 +647,7 @@ namespace ResmarkPrinterGroupDemo
             btnSelectMessage.IsAutoSizing = false;
             btnSelectMessage.IsSelectable = false;
             btnSelectMessage.IsSelected = false;
-            btnSelectMessage.Location = new System.Drawing.Point(834, 205);
+            btnSelectMessage.Location = new System.Drawing.Point(755, 187);
             btnSelectMessage.LoggingEnabled = true;
             btnSelectMessage.MirrorImage = false;
             btnSelectMessage.Name = "btnSelectMessage";
@@ -663,7 +676,7 @@ namespace ResmarkPrinterGroupDemo
             lblMessage.Depth = 0;
             lblMessage.Font = new System.Drawing.Font("Roboto", 11F);
             lblMessage.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblMessage.Location = new System.Drawing.Point(23, 372);
+            lblMessage.Location = new System.Drawing.Point(33, 462);
             lblMessage.MouseState = MaterialSkinPlus.MouseState.HOVER;
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new System.Drawing.Size(200, 23);
@@ -675,7 +688,7 @@ namespace ResmarkPrinterGroupDemo
             lblStatusList.Depth = 0;
             lblStatusList.Font = new System.Drawing.Font("Roboto", 11F);
             lblStatusList.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            lblStatusList.Location = new System.Drawing.Point(389, 376);
+            lblStatusList.Location = new System.Drawing.Point(389, 426);
             lblStatusList.MouseState = MaterialSkinPlus.MouseState.HOVER;
             lblStatusList.Name = "lblStatusList";
             lblStatusList.Size = new System.Drawing.Size(200, 23);
@@ -711,7 +724,7 @@ namespace ResmarkPrinterGroupDemo
             btnRefreshStatus.IsAutoSizing = false;
             btnRefreshStatus.IsSelectable = false;
             btnRefreshStatus.IsSelected = false;
-            btnRefreshStatus.Location = new System.Drawing.Point(875, 363);
+            btnRefreshStatus.Location = new System.Drawing.Point(790, 413);
             btnRefreshStatus.LoggingEnabled = true;
             btnRefreshStatus.MirrorImage = false;
             btnRefreshStatus.Name = "btnRefreshStatus";
@@ -735,11 +748,173 @@ namespace ResmarkPrinterGroupDemo
             btnRefreshStatus.ViewMode = Diagraph.Controls.ViewMode.Simple;
             btnRefreshStatus.Click += btnRefreshStatus_ClickAsync;
             // 
+            // btnPreview
+            // 
+            btnPreview.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnPreview.ButtonImage = null;
+            btnPreview.ButtonText = "Preview";
+            btnPreview.CanGetFocus = true;
+            btnPreview.CenterText = false;
+            btnPreview.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnPreview.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnPreview.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnPreview.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnPreview.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnPreview.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnPreview.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnPreview.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnPreview.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnPreview.ControlText = "Preview";
+            btnPreview.CornerRadius = 4;
+            btnPreview.DriverAssignmentKeys = null;
+            btnPreview.EnableBlink = false;
+            btnPreview.FlatStyle = FlatStyle.Flat;
+            btnPreview.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnPreview.GradientPosition = 0.4F;
+            btnPreview.ImageAboveText = false;
+            btnPreview.ImageHeight = 0;
+            btnPreview.IsAutoSizing = false;
+            btnPreview.IsSelectable = false;
+            btnPreview.IsSelected = false;
+            btnPreview.Location = new System.Drawing.Point(208, 531);
+            btnPreview.LoggingEnabled = true;
+            btnPreview.MirrorImage = false;
+            btnPreview.Name = "btnPreview";
+            btnPreview.Password_Category = null;
+            btnPreview.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnPreview.Password_Name = null;
+            btnPreview.PrinterGroup_Category = null;
+            btnPreview.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnPreview.PrinterGroup_Name = null;
+            btnPreview.Size = new System.Drawing.Size(141, 30);
+            btnPreview.SupportedPrinter = null;
+            btnPreview.SuppressSelect = false;
+            btnPreview.SuppressUpdate = false;
+            btnPreview.TabIndex = 22;
+            btnPreview.Text = "Preview";
+            btnPreview.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnPreview.TextCorrection = 0;
+            btnPreview.UpdateEnabled = true;
+            btnPreview.UseMouseOver = false;
+            btnPreview.VersionKey = null;
+            btnPreview.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnPreview.Click += btnPreview_Click;
+            // 
+            // btnPathPreviewMessage
+            // 
+            btnPathPreviewMessage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPathPreviewMessage.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnPathPreviewMessage.ButtonImage = null;
+            btnPathPreviewMessage.ButtonText = "Preview";
+            btnPathPreviewMessage.CanGetFocus = true;
+            btnPathPreviewMessage.CenterText = false;
+            btnPathPreviewMessage.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnPathPreviewMessage.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnPathPreviewMessage.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnPathPreviewMessage.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnPathPreviewMessage.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnPathPreviewMessage.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnPathPreviewMessage.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnPathPreviewMessage.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnPathPreviewMessage.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnPathPreviewMessage.ControlText = "Preview";
+            btnPathPreviewMessage.CornerRadius = 4;
+            btnPathPreviewMessage.DriverAssignmentKeys = null;
+            btnPathPreviewMessage.EnableBlink = false;
+            btnPathPreviewMessage.FlatStyle = FlatStyle.Flat;
+            btnPathPreviewMessage.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnPathPreviewMessage.GradientPosition = 0.4F;
+            btnPathPreviewMessage.ImageAboveText = false;
+            btnPathPreviewMessage.ImageHeight = 0;
+            btnPathPreviewMessage.IsAutoSizing = false;
+            btnPathPreviewMessage.IsSelectable = false;
+            btnPathPreviewMessage.IsSelected = false;
+            btnPathPreviewMessage.Location = new System.Drawing.Point(755, 227);
+            btnPathPreviewMessage.LoggingEnabled = true;
+            btnPathPreviewMessage.MirrorImage = false;
+            btnPathPreviewMessage.Name = "btnPathPreviewMessage";
+            btnPathPreviewMessage.Password_Category = null;
+            btnPathPreviewMessage.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnPathPreviewMessage.Password_Name = null;
+            btnPathPreviewMessage.PrinterGroup_Category = null;
+            btnPathPreviewMessage.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnPathPreviewMessage.PrinterGroup_Name = null;
+            btnPathPreviewMessage.Size = new System.Drawing.Size(141, 30);
+            btnPathPreviewMessage.SupportedPrinter = null;
+            btnPathPreviewMessage.SuppressSelect = false;
+            btnPathPreviewMessage.SuppressUpdate = false;
+            btnPathPreviewMessage.TabIndex = 19;
+            btnPathPreviewMessage.Text = "Preview";
+            btnPathPreviewMessage.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnPathPreviewMessage.TextCorrection = 0;
+            btnPathPreviewMessage.UpdateEnabled = true;
+            btnPathPreviewMessage.UseMouseOver = false;
+            btnPathPreviewMessage.VersionKey = null;
+            btnPathPreviewMessage.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnPathPreviewMessage.Visible = false;
+            btnPathPreviewMessage.Click += btnPathPreviewMessage_Click;
+            // 
+            // btnToXML
+            // 
+            btnToXML.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnToXML.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnToXML.ButtonImage = null;
+            btnToXML.ButtonText = "To XML";
+            btnToXML.CanGetFocus = true;
+            btnToXML.CenterText = false;
+            btnToXML.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnToXML.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnToXML.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnToXML.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnToXML.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnToXML.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnToXML.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnToXML.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnToXML.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnToXML.ControlText = "To XML";
+            btnToXML.CornerRadius = 4;
+            btnToXML.DriverAssignmentKeys = null;
+            btnToXML.EnableBlink = false;
+            btnToXML.FlatStyle = FlatStyle.Flat;
+            btnToXML.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnToXML.GradientPosition = 0.4F;
+            btnToXML.ImageAboveText = false;
+            btnToXML.ImageHeight = 0;
+            btnToXML.IsAutoSizing = false;
+            btnToXML.IsSelectable = false;
+            btnToXML.IsSelected = false;
+            btnToXML.Location = new System.Drawing.Point(755, 267);
+            btnToXML.LoggingEnabled = true;
+            btnToXML.MirrorImage = false;
+            btnToXML.Name = "btnToXML";
+            btnToXML.Password_Category = null;
+            btnToXML.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnToXML.Password_Name = null;
+            btnToXML.PrinterGroup_Category = null;
+            btnToXML.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnToXML.PrinterGroup_Name = null;
+            btnToXML.Size = new System.Drawing.Size(141, 30);
+            btnToXML.SupportedPrinter = null;
+            btnToXML.SuppressSelect = false;
+            btnToXML.SuppressUpdate = false;
+            btnToXML.TabIndex = 23;
+            btnToXML.Text = "To XML";
+            btnToXML.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnToXML.TextCorrection = 0;
+            btnToXML.UpdateEnabled = true;
+            btnToXML.UseMouseOver = false;
+            btnToXML.VersionKey = null;
+            btnToXML.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnToXML.Click += btnToXML_Click;
+            // 
             // GroupMainForm
             // 
-            ClientSize = new System.Drawing.Size(1002, 639);
+            ClientSize = new System.Drawing.Size(917, 669);
+            Controls.Add(btnToXML);
+            Controls.Add(btnPreview);
             Controls.Add(btnRefreshStatus);
             Controls.Add(lblStatusList);
+            Controls.Add(btnPathPreviewMessage);
             Controls.Add(btnSelectMessage);
             Controls.Add(lblAvailableMessages);
             Controls.Add(cboSelectMessage);
@@ -763,7 +938,7 @@ namespace ResmarkPrinterGroupDemo
             Controls.Add(gridStatus);
             Name = "GroupMainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Resmark Printer Group Demo";
+            Text = "Resmark Printer Group";
             FormClosing += GroupMainForm_FormClosing;
             ((System.ComponentModel.ISupportInitialize)gridStatus).EndInit();
             ResumeLayout(false);
@@ -775,5 +950,8 @@ namespace ResmarkPrinterGroupDemo
         private MaterialLabel lblMessage;
         private MaterialLabel lblStatusList;
         private FlexButton btnRefreshStatus;
+        private FlexButton btnPreview;
+        private FlexButton btnPathPreviewMessage;
+        private FlexButton btnToXML;
     }
 }

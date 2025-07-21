@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="MessageFolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%LOCALAPPDATA%\\Diagraph\\ResmarkManager</Value>
+      <Value Profile="(Default)">%LOCALAPPDATA%\Diagraph\ResmarkManager</Value>
     </Setting>
     <Setting Name="SavedPrinters" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />

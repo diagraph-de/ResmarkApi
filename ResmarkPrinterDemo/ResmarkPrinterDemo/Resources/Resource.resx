@@ -210,4 +210,48 @@
   <data name="StatusRefreshed" xml:space="preserve">
     <value>Status refreshed</value>
   </data>
+  <data name="PreviewTitle" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintSuccess" xml:space="preserve">
+    <value>Message printed successfully.</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ErrorPreview" xml:space="preserve">
+    <value>Failed to load preview</value>
+  </data> 
+  <data name="SelectMessage" xml:space="preserve"><value>Please select a message file first.</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>Selected message file not found.</value></data>
+  <data name="ErrorPreview" xml:space="preserve"><value>Could not load preview.</value></data>
+  <data name="SelectMessage" xml:space="preserve"><value>Please select a message first.</value></data>
+  <data name="PreviewTitle" xml:space="preserve">
+    <value>Message Preview</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="ErrorPreview" xml:space="preserve">
+    <value>Failed to load preview image.</value>
+  </data>
+  <data name="PrintSuccess" xml:space="preserve">
+    <value>Message was sent to printer successfully.</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="MessageSaved" xml:space="preserve">
+    <value>Message saved:</value>
+  </data>
+  <data name="ErrorRecall" xml:space="preserve">
+    <value>Failed to recall or save message:</value>
+  </data>
+  <data name="ErrorEmptyRecall" xml:space="preserve">
+    <value>The message is empty or could not be recalled.</value>
+  </data>
+
 </root>
