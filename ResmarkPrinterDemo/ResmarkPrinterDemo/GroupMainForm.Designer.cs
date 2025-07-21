@@ -77,10 +77,12 @@ namespace ResmarkPrinterGroupDemo
             cmbLanguage = new ComboBox();
             lblStatus = new MaterialLabel();
             btnPathPreviewMessage = new FlexButton();
+            pictureBox1 = new PictureBox();
             tabControl1.SuspendLayout();
             tabPrinters.SuspendLayout();
             tabGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridStatus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnAddPrinter
@@ -1070,7 +1072,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             cmbLanguage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbLanguage.Location = new System.Drawing.Point(782, 33);
+            cmbLanguage.Location = new System.Drawing.Point(782, 75);
             cmbLanguage.Name = "cmbLanguage";
             cmbLanguage.Size = new System.Drawing.Size(115, 23);
             cmbLanguage.TabIndex = 14;
@@ -1142,14 +1144,26 @@ namespace ResmarkPrinterGroupDemo
             btnPathPreviewMessage.Visible = false;
             btnPathPreviewMessage.Click += btnPathPreviewMessage_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(745, 35);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(168, 27);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 29;
+            pictureBox1.TabStop = false;
+            // 
             // GroupMainForm
             // 
             ClientSize = new System.Drawing.Size(909, 662);
+            Controls.Add(pictureBox1);
             Controls.Add(tabControl1);
             Controls.Add(btnPathPreviewMessage);
-            Controls.Add(tabSelector1);
             Controls.Add(lblStatus);
             Controls.Add(cmbLanguage);
+            Controls.Add(tabSelector1);
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MinimumSize = new System.Drawing.Size(909, 566);
             Name = "GroupMainForm";
@@ -1160,6 +1174,7 @@ namespace ResmarkPrinterGroupDemo
             tabPrinters.ResumeLayout(false);
             tabGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridStatus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
         private ComboBox cboSelectMessage;
@@ -1177,5 +1192,6 @@ namespace ResmarkPrinterGroupDemo
         private MaterialTabControl tabControl1;
         private TabPage tabPrinters;
         private TabPage tabGroup;
+        private PictureBox pictureBox1;
     }
 }
