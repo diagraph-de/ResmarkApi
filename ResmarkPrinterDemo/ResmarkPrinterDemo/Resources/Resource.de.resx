@@ -267,4 +267,7 @@
   <data name="DeleteError" xml:space="preserve">
     <value>Datei konnte nicht gelöscht werden: {0}</value>
   </data>
+  <data name="ConfigDangerPrompt" xml:space="preserve">
+    <value>Warnung: Ungültige Einträge in dieser Konfiguration können das System beschädigen. Möchten Sie wirklich fortfahren?</value>
+  </data>
 </root>

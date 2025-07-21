@@ -31,9 +31,18 @@ namespace ResmarkPrinterGroupDemo
                 MessageBox.Show(Resource.ConfigLoadError, Resource.ConfigTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private async void btnSave_Click(object sender, EventArgs e)
         {
+            var confirm = MessageBox.Show(
+                Resource.ConfigDangerPrompt,
+                Resource.ConfigTitle,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirm != DialogResult.Yes)
+                return;
+
             var newConfig = txtConfiguration.Text;
             var result = await _printer.SetConfiguration(newConfig);
 

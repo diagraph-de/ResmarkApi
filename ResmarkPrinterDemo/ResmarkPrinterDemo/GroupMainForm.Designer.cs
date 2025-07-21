@@ -952,7 +952,7 @@ namespace ResmarkPrinterGroupDemo
             btnConfig.PrinterGroup_Category = null;
             btnConfig.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
             btnConfig.PrinterGroup_Name = null;
-            btnConfig.Size = new System.Drawing.Size(100, 33);
+            btnConfig.Size = new System.Drawing.Size(106, 33);
             btnConfig.SupportedPrinter = null;
             btnConfig.SuppressSelect = false;
             btnConfig.SuppressUpdate = false;

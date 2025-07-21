@@ -267,4 +267,7 @@
   <data name="DeleteError" xml:space="preserve">
     <value>Could not delete the file: {0}</value>
   </data>
+  <data name="ConfigDangerPrompt" xml:space="preserve">
+    <value>Warning: Invalid entries in this configuration may cause system malfunction. Do you really want to continue?</value>
+  </data>
 </root>

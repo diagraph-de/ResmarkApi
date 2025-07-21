@@ -88,6 +88,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning: Invalid entries in this configuration may cause system malfunction. Do you really want to continue? ähnelt.
+        /// </summary>
+        internal static string ConfigDangerPrompt {
+            get {
+                return ResourceManager.GetString("ConfigDangerPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Failed to load configuration. ähnelt.
         /// </summary>
         internal static string ConfigLoadError {
