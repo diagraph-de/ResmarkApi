@@ -165,6 +165,9 @@
   <data name="Printers" xml:space="preserve">
     <value>Printers</value>
   </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Printer groups</value>
+  </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>
   </data>

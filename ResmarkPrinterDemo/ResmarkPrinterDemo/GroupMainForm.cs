@@ -92,7 +92,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         btnRemovePrinter.Text = Resource.RemovePrinter;
         lblPrintCount.Text = Resource.PrintCount;
         lblMessage.Text = Resource.MessageFile;
-        lblPrinters.Text = Resource.Printers;
+        tabPrinters.Text = Resource.Printers;
+        tabGroup.Text = Resource.Groups;
         lblStatus.Text = Resource.StatusReady;
         lblAvailableMessages.Text = Resource.AvailableMessages;
         lblStatusList.Text = Resource.Status;
@@ -282,7 +283,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     {
         SendMessageToAll();
 
-        Thread.Sleep(1000); // Wait for status updates
+        Thread.Sleep(3000); // Wait for status updates
         btnRefreshStatus_ClickAsync(this, null);
     }
 

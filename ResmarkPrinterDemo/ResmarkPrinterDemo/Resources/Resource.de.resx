@@ -285,5 +285,7 @@
   <data name="VariablesTitle" xml:space="preserve">
   <value>Variablen – {0}</value>
 </data>
-
+  <data name="Groups" xml:space="preserve">
+    <value>Druckergruppen</value>
+  </data>
 </root>

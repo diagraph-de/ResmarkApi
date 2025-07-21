@@ -259,6 +259,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printer groups ähnelt.
+        /// </summary>
+        internal static string Groups {
+            get {
+                return ResourceManager.GetString("Groups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Group Variables ähnelt.
         /// </summary>
         internal static string GroupVariablesTitle {
