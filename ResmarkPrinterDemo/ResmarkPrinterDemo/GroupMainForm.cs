@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,9 +35,14 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         LoadMessages();
         InitStatusTable();
         RestoreSettings();
-        Shown += async (s, e) => await ScanForPrinters();
+        Shown += async (s, e) =>
+        {
+            await ScanForPrinters();
+            btnRefreshStatus_ClickAsync(this,null);
+        };
 
         gridStatus.DataSource = _statusTable;
+    
     }
 
 
@@ -115,6 +121,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     {
         _statusTable.Rows.Clear();
 
+        int rowCnt = 0;
         foreach (var printer in _groupManager.Printers)
         {
             var statusText = printer.Status + Environment.NewLine;
@@ -136,11 +143,12 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             );
 
             // Color logic based on PrinterErrorDetails count
-            var row = gridStatus.Rows[0];
+            var row = gridStatus.Rows[rowCnt];
             if (printer.PrinterErrorDetails.Count > 0)
                 row.DefaultCellStyle.BackColor = Color.LightCoral; // red
             else
                 row.DefaultCellStyle.BackColor = Color.LightGreen; // green
+            rowCnt++;
         }
     }
 
