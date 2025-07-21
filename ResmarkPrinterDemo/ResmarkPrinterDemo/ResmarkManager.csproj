@@ -5,7 +5,12 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>ResmarkPrinterGroupDemo</RootNamespace>
+    <ApplicationIcon>Diagraph.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Diagraph.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\aControl\acControls\acControls.csproj" />
@@ -15,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="MessagePreviewFormImageOnly.cs">
       <SubType>Form</SubType>
     </Compile>

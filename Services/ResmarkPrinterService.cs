@@ -279,8 +279,86 @@ public class ResmarkPrinterService : IPrinterService
 
         return string.Empty;
     }
-        var request = CreateCallMethodRequest("ns=2;s=GetConfiguration");
+    public class OperationResultString : OperationResult
+    {
+        public string? Value { get; set; }
+    }
 
+    public async Task<OperationResultString> GetConfigurationAsync(string printerId, string ipAddress)
+    {
+        var request = CreateCallMethodRequest("ns=2;s=GetConfiguration");
+        var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+        if (response.Success &&
+            response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string configXml)
+        {
+            return new OperationResultString
+            {
+                Success = true,
+                Message = "Configuration retrieved.",
+                Value = configXml
+            };
+        }
+
+        return new OperationResultString
+        {
+            Success = false,
+            Message = "Failed to retrieve print head configuration.",
+            Error = response.Error
+        };
+    }
+
+    public async Task<OperationResult> SetConfigurationAsync(string printerId, string ipAddress, string configurationXml)
+    {
+        var request = CreateCallMethodRequest("ns=2;s=SetConfiguration", configurationXml);
+        var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+        return new OperationResult
+        {
+            Success = response.Success,
+            Response = response.Response,
+            Message = response.Success ? "Configuration set." : "Failed to set configuration.",
+            Error = response.Error
+        };
+    }
+
+    //public async Task<OperationResultString> GetPrintHeadConfigurationAsync(string printerId, string ipAddress)
+    //{
+    //    var request = CreateCallMethodRequest("ns=2;s=GetPrintHeadConfiguration");
+    //    var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+    //    if (response.Success &&
+    //        response.Response?.Results?.FirstOrDefault()?.OutputArguments?.LastOrDefault().Value is string configXml)
+    //    {
+    //        return new OperationResultString
+    //        {
+    //            Success = true,
+    //            Message = "Print head configuration retrieved.",
+    //            Value = configXml
+    //        };
+    //    }
+
+    //    return new OperationResultString
+    //    {
+    //        Success = false,
+    //        Message = "Failed to retrieve print head configuration.",
+    //        Error = response.Error
+    //    };
+    //}
+
+    //public async Task<OperationResult> SetPrintHeadConfigurationAsync(string printerId, string ipAddress, string configurationXml)
+    //{
+    //    var request = CreateCallMethodRequest("ns=2;s=SetPrintHeadConfiguration", configurationXml);
+    //    var response = await ExecutePrinterOperationAsync<object>(printerId, ipAddress, request);
+
+    //    return new OperationResult
+    //    {
+    //        Success = response.Success,
+    //        Response = response.Response,
+    //        Message = response.Success ? "Print head configuration set." : "Failed to set print head configuration.",
+    //        Error = response.Error
+    //    };
+    //}
 
     private CallMethodRequest CreateCallMethodRequest(string methodId, params object[] args)
     {

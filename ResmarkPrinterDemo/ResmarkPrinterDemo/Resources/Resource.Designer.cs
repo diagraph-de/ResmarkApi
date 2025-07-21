@@ -79,11 +79,101 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        internal static string ConfigCancelButton {
+            get {
+                return ResourceManager.GetString("ConfigCancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to load configuration. ähnelt.
+        /// </summary>
+        internal static string ConfigLoadError {
+            get {
+                return ResourceManager.GetString("ConfigLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        internal static string ConfigSaveButton {
+            get {
+                return ResourceManager.GetString("ConfigSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Configuration saved. ähnelt.
+        /// </summary>
+        internal static string ConfigSaved {
+            get {
+                return ResourceManager.GetString("ConfigSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to save configuration. ähnelt.
+        /// </summary>
+        internal static string ConfigSaveError {
+            get {
+                return ResourceManager.GetString("ConfigSaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Print Head Configuration ähnelt.
+        /// </summary>
+        internal static string ConfigTitle {
+            get {
+                return ResourceManager.GetString("ConfigTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to delete the file &quot;{0}&quot;? ähnelt.
+        /// </summary>
+        internal static string ConfirmDeleteMessage {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Connection failed ähnelt.
         /// </summary>
         internal static string ConnectionFailed {
             get {
                 return ResourceManager.GetString("ConnectionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Could not delete the file: {0} ähnelt.
+        /// </summary>
+        internal static string DeleteError {
+            get {
+                return ResourceManager.GetString("DeleteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file was successfully deleted. ähnelt.
+        /// </summary>
+        internal static string DeleteSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete Message ähnelt.
+        /// </summary>
+        internal static string DeleteTitle {
+            get {
+                return ResourceManager.GetString("DeleteTitle", resourceCulture);
             }
         }
         
@@ -133,7 +223,7 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Selected message file not found. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file does not exist. ähnelt.
         /// </summary>
         internal static string FileNotFound {
             get {
@@ -169,7 +259,7 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die No Printers found ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die No new printers found ähnelt.
         /// </summary>
         internal static string NoPrintersFound {
             get {

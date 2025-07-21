@@ -151,13 +151,13 @@
     <value>Connection failed</value>
   </data>
   <data name="SelectMessage" xml:space="preserve">
-    <value>Please select a message file.</value>
+    <value>Please select a message first.</value>
   </data>
   <data name="EditVariables" xml:space="preserve">
     <value>Edit Variables</value>
   </data>
   <data name="NoPrintersFound" xml:space="preserve">
-    <value>No Printers found</value>
+    <value>No new printers found</value>
   </data>
   <data name="Printers" xml:space="preserve">
     <value>Printers</value>
@@ -211,38 +211,22 @@
     <value>Status refreshed</value>
   </data>
   <data name="PreviewTitle" xml:space="preserve">
-    <value>Preview</value>
-  </data>
-  <data name="Print" xml:space="preserve">
-    <value>Print</value>
-  </data>
-  <data name="PrintSuccess" xml:space="preserve">
-    <value>Message printed successfully.</value>
-  </data>
-  <data name="Done" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="ErrorPreview" xml:space="preserve">
-    <value>Failed to load preview</value>
-  </data> 
-  <data name="SelectMessage" xml:space="preserve"><value>Please select a message file first.</value></data>
-  <data name="FileNotFound" xml:space="preserve"><value>Selected message file not found.</value></data>
-  <data name="ErrorPreview" xml:space="preserve"><value>Could not load preview.</value></data>
-  <data name="SelectMessage" xml:space="preserve"><value>Please select a message first.</value></data>
-  <data name="PreviewTitle" xml:space="preserve">
     <value>Message Preview</value>
   </data>
   <data name="Print" xml:space="preserve">
     <value>Print</value>
-  </data>
-  <data name="ErrorPreview" xml:space="preserve">
-    <value>Failed to load preview image.</value>
   </data>
   <data name="PrintSuccess" xml:space="preserve">
     <value>Message was sent to printer successfully.</value>
   </data>
   <data name="Done" xml:space="preserve">
     <value>Done</value>
+  </data>
+  <data name="ErrorPreview" xml:space="preserve">
+    <value>Failed to load preview image.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>The file does not exist.</value>
   </data>
   <data name="MessageSaved" xml:space="preserve">
     <value>Message saved:</value>
@@ -253,5 +237,34 @@
   <data name="ErrorEmptyRecall" xml:space="preserve">
     <value>The message is empty or could not be recalled.</value>
   </data>
-
+  <data name="ConfigTitle" xml:space="preserve">
+    <value>Print Head Configuration</value>
+  </data>
+  <data name="ConfigSaveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ConfigCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfigSaved" xml:space="preserve">
+    <value>Configuration saved.</value>
+  </data>
+  <data name="ConfigSaveError" xml:space="preserve">
+    <value>Failed to save configuration.</value>
+  </data>
+  <data name="ConfigLoadError" xml:space="preserve">
+    <value>Failed to load configuration.</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Delete Message</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete the file "{0}"?</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>The file was successfully deleted.</value>
+  </data>
+  <data name="DeleteError" xml:space="preserve">
+    <value>Could not delete the file: {0}</value>
+  </data>
 </root>

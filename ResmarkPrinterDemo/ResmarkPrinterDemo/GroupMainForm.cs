@@ -240,13 +240,13 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                     await printer.SetPrintCountAsync(printCount);
                     var ok = await printer.SendMessageAsync(xml);
                     lblStatus.Invoke(() =>
-                        lblStatus.Text = $"> {printer.IpAddress}: {(ok ? "✓" : "✗")} - {Resource.StatusSent}"
+                        lblStatus.Text = $"{printer.IpAddress}: {(ok ? "✓" : "✗")} - {Resource.StatusSent}"
                     );
                 }
                 else
                 {
                     lblStatus.Invoke(() =>
-                        lblStatus.Text = $"> {printer.IpAddress}: {Resource.ConnectionFailed}"
+                        lblStatus.Text = $"{printer.IpAddress}: {Resource.ConnectionFailed}"
                     );
                 }
             });
@@ -480,7 +480,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         var ip = parts[1].Trim();
 
         var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
-         
+
         try
         {
             // Attempt to recall the active message
@@ -509,4 +509,56 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         LoadMessages();
     }
 
-}
+    private void btnConfig_Click(object sender, EventArgs e)
+    {
+        if (listPrinters.SelectedItem is string printer)
+        {
+            var wrapper = _groupManager.GetPrinter(printer);
+            if (wrapper == null) return;
+
+            using var configForm = new ConfigurationForm(wrapper);
+            configForm.ShowDialog();
+        }
+    }
+
+    private void btnDeleteXML_Click(object sender, EventArgs e)
+    {
+        var folder = Environment.ExpandEnvironmentVariables(Settings.Default.MessageFolderPath);
+        Directory.CreateDirectory(folder); // Ensure directory exists
+
+        var filename = Path.Combine(folder, cmbMessages.Text);
+        if (File.Exists(filename))
+        {
+            var confirm = MessageBox.Show(
+                string.Format(Resource.ConfirmDeleteMessage, Path.GetFileName(filename)),
+                Resource.DeleteTitle,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    File.Delete(filename);
+                    MessageBox.Show(Resource.DeleteSuccess, Resource.DeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        string.Format(Resource.DeleteError, ex.Message),
+                        Resource.DeleteTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+        else
+        {
+            MessageBox.Show(Resource.FileNotFound, Resource.DeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        LoadMessages();
+    } 
+} 

@@ -17,6 +17,7 @@ namespace ResmarkPrinterGroupDemo
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessagePreviewFormImageOnly));
             pictureBoxPreview = new System.Windows.Forms.PictureBox();
             btnClose = new Diagraph.Controls.Buttons.FlexButton();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPreview).BeginInit();
@@ -91,6 +92,7 @@ namespace ResmarkPrinterGroupDemo
             ClientSize = new System.Drawing.Size(600, 490);
             Controls.Add(pictureBoxPreview);
             Controls.Add(btnClose);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Name = "MessagePreviewFormImageOnly";
             Text = "Preview";
             Load += MessagePreviewFormImageOnly_Load;

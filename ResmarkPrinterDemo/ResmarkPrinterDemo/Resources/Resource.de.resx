@@ -151,13 +151,13 @@
     <value>Verbindung fehlgeschlagen</value>
   </data>
   <data name="SelectMessage" xml:space="preserve">
-    <value>Bitte ein Druckbild auswählen.</value>
+    <value>Bitte zuerst eine Nachricht auswählen.</value>
   </data>
   <data name="EditVariables" xml:space="preserve">
     <value>Variablen bearbeiten</value>
   </data>
   <data name="NoPrintersFound" xml:space="preserve">
-    <value>Keine Drucker gefunden</value>
+    <value>Keine neuen Drucker gefunden</value>
   </data>
   <data name="Printers" xml:space="preserve">
     <value>Drucker</value>
@@ -211,53 +211,22 @@
     <value>Status aktualisiert</value>
   </data>
   <data name="PreviewTitle" xml:space="preserve">
-  <value>Nachrichtenvorschau</value>
-</data>
-  <data name="Print" xml:space="preserve">
-  <value>Drucken</value>
-</data>
-  <data name="PrintSuccess" xml:space="preserve">
-  <value>Nachricht erfolgreich gesendet.</value>
-</data>
-  <data name="Done" xml:space="preserve">
-  <value>Fertig</value>
-</data>
-  <data name="ErrorPreview" xml:space="preserve">
-  <value>Fehler beim Laden der Vorschau</value>
-</data>
-  <data name="PreviewTitle" xml:space="preserve">
-  <value>Vorschau</value>
-</data>
-  <data name="Print" xml:space="preserve">
-  <value>Drucken</value>
-</data>
-  <data name="ErrorPreview" xml:space="preserve">
-  <value>Fehler beim Laden der Vorschau</value>
-</data>
-  <data name="PrintSuccess" xml:space="preserve">
-  <value>Nachricht erfolgreich gedruckt.</value>
-</data>
-  <data name="Done" xml:space="preserve">
-  <value>Fertig</value>
-</data>
-  <data name="SelectMessage" xml:space="preserve"><value>Bitte zuerst eine Nachrichtendatei auswählen.</value></data>
-  <data name="FileNotFound" xml:space="preserve"><value>Ausgewählte Nachrichtendatei wurde nicht gefunden.</value></data>
-  <data name="ErrorPreview" xml:space="preserve"><value>Vorschau konnte nicht geladen werden.</value></data>
-  <data name="SelectMessage" xml:space="preserve"><value>Bitte zuerst eine Nachricht auswählen.</value></data>
-  <data name="PreviewTitle" xml:space="preserve">
     <value>Nachrichtenvorschau</value>
   </data>
   <data name="Print" xml:space="preserve">
     <value>Drucken</value>
-  </data>
-  <data name="ErrorPreview" xml:space="preserve">
-    <value>Vorschaubild konnte nicht geladen werden.</value>
   </data>
   <data name="PrintSuccess" xml:space="preserve">
     <value>Nachricht wurde erfolgreich an den Drucker gesendet.</value>
   </data>
   <data name="Done" xml:space="preserve">
     <value>Fertig</value>
+  </data>
+  <data name="ErrorPreview" xml:space="preserve">
+    <value>Vorschaubild konnte nicht geladen werden.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Die Datei existiert nicht.</value>
   </data>
   <data name="MessageSaved" xml:space="preserve">
     <value>Nachricht gespeichert:</value>
@@ -268,5 +237,34 @@
   <data name="ErrorEmptyRecall" xml:space="preserve">
     <value>Die Nachricht ist leer oder konnte nicht geladen werden.</value>
   </data>
-
+  <data name="ConfigTitle" xml:space="preserve">
+    <value>Druckkopf-Konfiguration</value>
+  </data>
+  <data name="ConfigSaveButton" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="ConfigCancelButton" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ConfigSaved" xml:space="preserve">
+    <value>Konfiguration gespeichert.</value>
+  </data>
+  <data name="ConfigSaveError" xml:space="preserve">
+    <value>Konfiguration konnte nicht gespeichert werden.</value>
+  </data>
+  <data name="ConfigLoadError" xml:space="preserve">
+    <value>Konfiguration konnte nicht geladen werden.</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Datei löschen</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Möchten Sie die Datei „{0}“ wirklich löschen?</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Die Datei wurde erfolgreich gelöscht.</value>
+  </data>
+  <data name="DeleteError" xml:space="preserve">
+    <value>Datei konnte nicht gelöscht werden: {0}</value>
+  </data>
 </root>

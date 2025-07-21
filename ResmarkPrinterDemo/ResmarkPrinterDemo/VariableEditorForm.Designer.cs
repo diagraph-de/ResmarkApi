@@ -20,6 +20,7 @@ namespace ResmarkPrinterGroupDemo
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VariableEditorForm));
             dataGridVariables = new System.Windows.Forms.DataGridView();
             btnSave = new FlexButton();
             ((System.ComponentModel.ISupportInitialize)dataGridVariables).BeginInit();
@@ -95,6 +96,7 @@ namespace ResmarkPrinterGroupDemo
             ClientSize = new System.Drawing.Size(584, 454);
             Controls.Add(btnSave);
             Controls.Add(dataGridVariables);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Name = "VariableEditorForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Variablen";

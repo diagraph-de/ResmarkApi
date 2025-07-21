@@ -1,7 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Diagraph.ResmarkApi.Interfaces;
 using Diagraph.ResmarkApi.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using static Diagraph.ResmarkApi.Services.ResmarkPrinterService;
 
 namespace Diagraph.ResmarkApi;
 
@@ -87,5 +88,24 @@ public class ResmarkAPI
     public async Task<string> RecallMessage(string messageName)
     {
         return await _resmarkPrinterService.RecallMessageAsync(_printerId, _ipAddress, messageName);
+    }
+    //public async Task<OperationResult> SetPrintHeadConfiguration(string configurationXml)
+    //{
+    //    return await _resmarkPrinterService.SetPrintHeadConfigurationAsync(_printerId, _ipAddress, configurationXml);
+    //}
+
+    //public async Task<OperationResultString> GetPrintHeadConfiguration()
+    //{
+    //    return await _resmarkPrinterService.GetPrintHeadConfigurationAsync(_printerId, _ipAddress);
+    //}
+
+    public async Task<OperationResult> SetConfiguration(string configurationXml)
+    {
+        return await _resmarkPrinterService.SetConfigurationAsync(_printerId, _ipAddress, configurationXml);
+    }
+
+    public async Task<OperationResultString> GetConfiguration()
+    {
+        return await _resmarkPrinterService.GetConfigurationAsync(_printerId, _ipAddress);
     }
 }

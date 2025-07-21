@@ -1,6 +1,8 @@
+using Diagraph.ResmarkApi.Interfaces;
+using Diagraph.ResmarkApi.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Diagraph.ResmarkApi.Services;
+using static Diagraph.ResmarkApi.Services.ResmarkPrinterService;
 
 public class ResmarkPrinterWrapper
 {
@@ -133,5 +135,37 @@ public class ResmarkPrinterWrapper
     public async Task<string> RecallMessageAsync(string messageName)
     {
         return await _service.RecallMessageAsync(PrinterId, IpAddress, messageName);
-    } 
+    }
+
+    public async Task<OperationResult> SetConfiguration(string configurationXml)
+    {
+        var result = await _service.SetConfigurationAsync(PrinterId, IpAddress, configurationXml);
+        LastStatus = result.Message;
+        LastSuccess = result.Success;
+        return result;
+    }
+
+    public async Task<string> GetConfiguration()
+    {
+        var result = await _service.GetConfigurationAsync(PrinterId, IpAddress);
+        LastStatus = result.Message;
+        LastSuccess = result.Success;
+        return result.Success ? result.Value ?? string.Empty : string.Empty;
+    }
+
+    //public async Task<OperationResult> SetPrintHeadConfiguration(string configurationXml)
+    //{
+    //    var result = await _service.SetPrintHeadConfigurationAsync(PrinterId, IpAddress, configurationXml);
+    //    LastStatus = result.Message;
+    //    LastSuccess = result.Success;
+    //    return result;
+    //}
+
+    //public async Task<string> GetPrintHeadConfiguration()
+    //{
+    //    var result = await _service.GetPrintHeadConfigurationAsync(PrinterId, IpAddress);
+    //    LastStatus = result.Message;
+    //    LastSuccess = result.Success;
+    //    return result.Success ? result.Value ?? string.Empty : string.Empty;
+    //}
 }
