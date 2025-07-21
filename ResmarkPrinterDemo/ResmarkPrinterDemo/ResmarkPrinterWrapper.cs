@@ -37,14 +37,15 @@ public class ResmarkPrinterWrapper
     }
 
     public async Task<string> GetStatusAsync()
-    {
+    { 
         var result = await _service.GetStatusInformationAsync(PrinterId, IpAddress);
         LastStatus = result.Message;
         LastSuccess = result.Success;
         IsConnected = result.Success;
-
+        
         if (result.Success)
         {
+            MessageName = result.MessageName;
             Status = result.Status ?? "";
             EncoderSpeed = result.EncoderSpeed;
             PrinterErrors = result.PrinterErrors ?? new List<string>();

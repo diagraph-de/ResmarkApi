@@ -223,6 +223,12 @@ public class ResmarkPrinterService : IPrinterService
                 ret.PrinterErrors = new List<string>(errors);
             else
                 ret.PrinterErrors = new List<string>();
+
+            ret.MessageName = "";
+            if (outputArgs.Length > 2 && outputArgs[2].Value != null) ret.MessageName = outputArgs[2].Value +"";
+
+            if (ret.MessageName.Length>0 && !ret.MessageName.EndsWith(".next"))
+                ret.MessageName+=".next";
         }
         else
         {

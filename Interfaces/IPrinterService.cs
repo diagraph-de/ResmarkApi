@@ -41,6 +41,7 @@ public class OperationResultStatus : OperationResult
 {
     public string Status { get; set; }
     public int EncoderSpeed { get; set; }
+    public string MessageName { get; set; }
     public List<string> PrinterErrors { get; set; }
     public List<string> PrinterErrorDetails { get; set; }
 }

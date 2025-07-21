@@ -291,6 +291,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     private void btnSendMessage_Click(object sender, EventArgs e)
     {
         SendMessageToAll();
+        Thread.Sleep(1000); // Wait for status updates
         btnRefreshStatus_ClickAsync(this, null);
     }
 

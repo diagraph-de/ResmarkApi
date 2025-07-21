@@ -156,7 +156,7 @@ namespace ResmarkPrinterGroupDemo
             btnEditVariables.IsAutoSizing = false;
             btnEditVariables.IsSelectable = false;
             btnEditVariables.IsSelected = false;
-            btnEditVariables.Location = new System.Drawing.Point(28, 575);
+            btnEditVariables.Location = new System.Drawing.Point(28, 539);
             btnEditVariables.LoggingEnabled = true;
             btnEditVariables.MirrorImage = false;
             btnEditVariables.Name = "btnEditVariables";
@@ -313,7 +313,7 @@ namespace ResmarkPrinterGroupDemo
             btnSendMessage.IsAutoSizing = false;
             btnSendMessage.IsSelectable = false;
             btnSendMessage.IsSelected = false;
-            btnSendMessage.Location = new System.Drawing.Point(28, 534);
+            btnSendMessage.Location = new System.Drawing.Point(28, 497);
             btnSendMessage.LoggingEnabled = true;
             btnSendMessage.MirrorImage = false;
             btnSendMessage.Name = "btnSendMessage";
@@ -783,7 +783,7 @@ namespace ResmarkPrinterGroupDemo
             btnPreview.IsAutoSizing = false;
             btnPreview.IsSelectable = false;
             btnPreview.IsSelected = false;
-            btnPreview.Location = new System.Drawing.Point(28, 496);
+            btnPreview.Location = new System.Drawing.Point(28, 581);
             btnPreview.LoggingEnabled = true;
             btnPreview.MirrorImage = false;
             btnPreview.Name = "btnPreview";
