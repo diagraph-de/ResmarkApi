@@ -279,6 +279,7 @@ public class ResmarkPrinterService : IPrinterService
 
         return string.Empty;
     }
+        var request = CreateCallMethodRequest("ns=2;s=GetConfiguration");
 
 
     private CallMethodRequest CreateCallMethodRequest(string methodId, params object[] args)
