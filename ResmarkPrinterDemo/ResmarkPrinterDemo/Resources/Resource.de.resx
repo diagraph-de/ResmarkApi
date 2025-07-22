@@ -288,4 +288,40 @@
   <data name="Groups" xml:space="preserve">
     <value>Druckergruppen</value>
   </data>
+  <data name="OffsetFormTitle" xml:space="preserve">
+  <value>Offsets bearbeiten</value>
+</data>
+  <data name="OffsetButtonSave" xml:space="preserve">
+  <value>Speichern</value>
+</data>
+  <data name="OffsetButtonCancel" xml:space="preserve">
+  <value>Abbrechen</value>
+</data>
+  <data name="OffsetButtonRemove" xml:space="preserve">
+  <value>Entfernen</value>
+</data>
+  <data name="OffsetSaved" xml:space="preserve">
+  <value>Offsets wurden erfolgreich gespeichert.</value>
+</data>
+  <data name="OffsetRemoved" xml:space="preserve">
+  <value>Offset wurde entfernt.</value>
+</data>
+  <data name="OffsetRemoveWarning" xml:space="preserve">
+  <value>Möchten Sie den ausgewählten Offset wirklich entfernen?</value>
+</data>
+  <data name="OffsetRemoveTitle" xml:space="preserve">
+  <value>Offset entfernen</value>
+</data>
+  <data name="FillAllFields" xml:space="preserve">
+  <value>Bitte alle Felder ausfüllen.</value>
+</data> 
+  <data name="OffsetsSaved" xml:space="preserve">
+  <value>Offsets wurden gespeichert.</value>
+</data>
+  <data name="ToXML" xml:space="preserve">
+  <value>To XML</value>
+</data>
+  <data name="SelectMsg" xml:space="preserve">
+  <value>Nachricht auswählen</value>
+</data>
 </root>

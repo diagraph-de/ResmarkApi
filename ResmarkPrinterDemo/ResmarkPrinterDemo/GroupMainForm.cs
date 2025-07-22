@@ -10,9 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Intrinsics.X86;
+using System.Linq; 
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +23,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     private readonly PrinterGroupManager _groupManager = new();
     private readonly ResmarkPrinterService _printerService = new(new ClientService());
     private readonly DataTable _statusTable = new();
-
+    private readonly OffsetConfigurationManager _offsetManager = new();
     public GroupMainForm()
     {
         Width = 1200;
@@ -38,11 +36,11 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         Shown += async (s, e) =>
         {
             await ScanForPrinters();
-            btnRefreshStatus_ClickAsync(this,null);
+            btnRefreshStatus_ClickAsync(this, null);
         };
 
         gridStatus.DataSource = _statusTable;
-    
+
     }
 
 
@@ -104,6 +102,9 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         lblAvailableMessages.Text = Resource.AvailableMessages;
         lblStatusList.Text = Resource.Status;
         btnEditGroupVariables.Text = Resource.EditGroupVariables;
+        btnOffsets.Text = Resource.OffsetFormTitle;
+        btnToXML.Text = Resource.ToXML;
+        btnSelectMessage.Text = Resource.SelectMsg;
     }
 
     private void InitStatusTable()
@@ -146,6 +147,8 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             var row = gridStatus.Rows[rowCnt];
             if (printer.PrinterErrorDetails.Count > 0)
                 row.DefaultCellStyle.BackColor = Color.LightCoral; // red
+            else if (!printer.IsConnected)
+                row.DefaultCellStyle.BackColor = Color.White; 
             else
                 row.DefaultCellStyle.BackColor = Color.LightGreen; // green
             rowCnt++;
@@ -249,10 +252,12 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
                 var status = await printer.GetStatusAsync();
                 if (status.Length > 0)
                 {
+                    ApplyOffsetToPrinter(printer.PrinterId, printer.IpAddress, filename);
+
                     await printer.SetPrintCountAsync(printCount);
                     var ok = await printer.SendMessageAsync(xml);
                     lblStatus.Invoke(() =>
-                        lblStatus.Text = $"{printer.IpAddress}: {(ok ? "✓" : "✗")} - {Resource.StatusSent}"
+                        lblStatus.Text = $"{printer.IpAddress}: {(ok ? "✓" : "✗")} – {Resource.StatusSent}"
                     );
                 }
                 else
@@ -265,8 +270,6 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
 
         UpdateStatusTable();
     }
-     
-
     private void btnRemovePrinter_Click(object sender, EventArgs e)
     {
         if (listPrinters.SelectedItem is string printer)
@@ -361,18 +364,25 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             var wrapper = _groupManager.GetPrinter(printer);
             if (wrapper == null) return;
 
+            var messageName = cboSelectMessage.Text;
+            var folder = Environment.ExpandEnvironmentVariables(Settings.Default.MessageFolderPath);
+            var path = Path.Combine(folder, messageName);
+            if (!File.Exists(path)) return;
+
+            var xml = File.ReadAllText(path);
+            ApplyOffsetToPrinter(wrapper.PrinterId, wrapper.IpAddress, messageName);
+
             if (!int.TryParse(txtPrintCount.Text, out var printCount)) printCount = 1;
 
             await wrapper.SetPrintCountAsync(printCount);
-            await wrapper.PrintStoredMessageAsync(cboSelectMessage.Text);
+            await wrapper.SendMessageAsync(xml);
             var status = await wrapper.GetStatusAsync();
             lblStatus.Text =
-                $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{cboSelectMessage.Text}\" – {status}";
+                $" {wrapper.IpAddress}: {Resource.StatusSelectMessage} \"{messageName}\" – {status}";
 
             btnRefreshStatus_ClickAsync(this, null);
         }
     }
-
 
     private async void listPrinters_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -579,7 +589,7 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             MessageBox.Show(Resource.NoPrintersFound, Resource.GroupVariablesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
-         
+
         var templatePrinter = _groupManager.Printers.FirstOrDefault(p => p.IsConnected);
         if (templatePrinter == null)
         {
@@ -592,14 +602,14 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         var id = p.Split("-")[0].Trim();
         var ip = p.Split("-")[1].Trim();
 
-        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip); 
+        var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
         var initialVars = await templatePrinter.GetVariablesAsync();
         var editedVars = new Dictionary<string, string>(initialVars);
-         
+
         using var form = new VariableEditorForm(editedVars, wrapper);
         if (form.ShowDialog() != DialogResult.OK)
             return;
-          
+
         lblStatus.Text = Resource.StatusSending;
 
         foreach (var printer in _groupManager.Printers)
@@ -607,11 +617,67 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
             foreach (var kv in editedVars)
                 await printer.SetVariableAsync(kv.Key, kv.Value);
         }
-        
+
         MessageBox.Show(Resource.VariablesSaved, Resource.Done, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         Thread.Sleep(1000);
         btnRefreshStatus_ClickAsync(this, null);
-    }
+    } 
+    private async void btnOffsets_Click(object sender, EventArgs e)
+    {
+        using var offsetForm = new OffsetEditorForm(_offsetManager);
 
+
+        if (listPrinters.SelectedItem is string printer)
+        {
+            //var wrapper = _groupManager.GetPrinter(printer);
+            //if (wrapper != null)
+            //{
+            //    var configXml = await wrapper.GetConfiguration();
+            //    offsetForm.txtOffset.Text= 
+            //}
+
+            var id = printer.Split("-")[0].Trim();
+            var ip = printer.Split("-")[1].Trim();
+
+            offsetForm.txtIp.Text = ip;
+            offsetForm.txtPrinterId.Text = id;
+
+            if (cboSelectMessage.SelectedItem != null)
+                offsetForm.txtMessage.Text = cboSelectMessage.Text;
+        }
+
+        offsetForm.ShowDialog();
+    }  
+
+    private async void ApplyOffsetToPrinter(string printerId, string ipAddress, string messageName)
+    {
+        string printer =  printerId + " - " + ipAddress;
+        var wrapper = _groupManager.GetPrinter(printer);
+        if (wrapper != null)
+        {
+            var xml = await wrapper.GetConfiguration();
+             
+            var offsetValue = _offsetManager.GetOffset(printerId, ipAddress, messageName);
+            if (offsetValue is null)
+            {
+                offsetValue= _offsetManager.GetStandardOffset(printer);
+            }
+            var cleanedXml = Regex.Replace(xml, @"(<ph[^>]*?)\s+offset\s*=\s*""\d+""", "$1", RegexOptions.IgnoreCase);
+
+            var newXml = Regex.Replace(
+                cleanedXml,
+                @"<ph([^>]*)>",
+                m =>
+                {
+                    var attrs = m.Groups[1].Value;
+                    return $"<ph offset=\"{offsetValue}\"{attrs}>";
+                },
+                RegexOptions.IgnoreCase
+            );
+
+            if(!string.IsNullOrEmpty(newXml))
+                await wrapper.SetConfiguration(newXml);
+        } 
+    }
 }

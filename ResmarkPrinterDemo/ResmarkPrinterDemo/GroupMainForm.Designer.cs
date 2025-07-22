@@ -53,6 +53,7 @@ namespace ResmarkPrinterGroupDemo
             tabSelector1 = new MaterialTabSelector();
             tabControl1 = new MaterialTabControl();
             tabPrinters = new TabPage();
+            btnOffsets = new FlexButton();
             listScanResults = new ListBox();
             txtPrintCount = new MaterialSingleLineTextField();
             btnConfig = new FlexButton();
@@ -378,7 +379,8 @@ namespace ResmarkPrinterGroupDemo
             // 
             // tabPrinters
             // 
-            tabPrinters.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            tabPrinters.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
+            tabPrinters.Controls.Add(btnOffsets);
             tabPrinters.Controls.Add(listScanResults);
             tabPrinters.Controls.Add(btnEditVariables);
             tabPrinters.Controls.Add(txtPrintCount);
@@ -401,6 +403,58 @@ namespace ResmarkPrinterGroupDemo
             tabPrinters.Size = new System.Drawing.Size(906, 491);
             tabPrinters.TabIndex = 0;
             tabPrinters.Text = "Printers";
+            // 
+            // btnOffsets
+            // 
+            btnOffsets.BlinkType = Diagraph.Controls.Global.ErrorType.None;
+            btnOffsets.ButtonImage = null;
+            btnOffsets.ButtonText = "Offsets";
+            btnOffsets.CanGetFocus = true;
+            btnOffsets.CenterText = false;
+            btnOffsets.Color = System.Drawing.Color.FromArgb(153, 180, 209);
+            btnOffsets.Color_Border = System.Drawing.Color.FromArgb(105, 105, 105);
+            btnOffsets.Color_Disabled = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnOffsets.Color_Glow = System.Drawing.Color.FromArgb(191, 205, 219);
+            btnOffsets.Color_Hover = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnOffsets.Color_Selected = System.Drawing.Color.FromArgb(255, 184, 77);
+            btnOffsets.Color_Selected_Border = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnOffsets.Color_Selected_Glow = System.Drawing.Color.FromArgb(255, 194, 47);
+            btnOffsets.Color_Selected_Hover = System.Drawing.Color.FromArgb(255, 198, 102);
+            btnOffsets.ControlText = "Offsets";
+            btnOffsets.CornerRadius = 4;
+            btnOffsets.DriverAssignmentKeys = null;
+            btnOffsets.EnableBlink = false;
+            btnOffsets.FlatStyle = FlatStyle.Flat;
+            btnOffsets.Font = new System.Drawing.Font("Segoe UI", 12F);
+            btnOffsets.GradientPosition = 0.4F;
+            btnOffsets.ImageAboveText = false;
+            btnOffsets.ImageHeight = 0;
+            btnOffsets.IsAutoSizing = false;
+            btnOffsets.IsSelectable = false;
+            btnOffsets.IsSelected = false;
+            btnOffsets.Location = new System.Drawing.Point(358, 256);
+            btnOffsets.LoggingEnabled = true;
+            btnOffsets.MirrorImage = false;
+            btnOffsets.Name = "btnOffsets";
+            btnOffsets.Password_Category = null;
+            btnOffsets.Password_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnOffsets.Password_Name = null;
+            btnOffsets.PrinterGroup_Category = null;
+            btnOffsets.PrinterGroup_ID = new System.Guid("00000000-0000-0000-0000-000000000000");
+            btnOffsets.PrinterGroup_Name = null;
+            btnOffsets.Size = new System.Drawing.Size(226, 33);
+            btnOffsets.SupportedPrinter = null;
+            btnOffsets.SuppressSelect = false;
+            btnOffsets.SuppressUpdate = false;
+            btnOffsets.TabIndex = 25;
+            btnOffsets.Text = "Offsets";
+            btnOffsets.TextColor = System.Drawing.Color.FromArgb(32, 77, 137);
+            btnOffsets.TextCorrection = 0;
+            btnOffsets.UpdateEnabled = true;
+            btnOffsets.UseMouseOver = false;
+            btnOffsets.VersionKey = null;
+            btnOffsets.ViewMode = Diagraph.Controls.ViewMode.Simple;
+            btnOffsets.Click += btnOffsets_Click;
             // 
             // listScanResults
             // 
@@ -792,7 +846,7 @@ namespace ResmarkPrinterGroupDemo
             // 
             // tabGroup
             // 
-            tabGroup.BackColor = System.Drawing.SystemColors.ControlDark;
+            tabGroup.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
             tabGroup.Controls.Add(lblMessage);
             tabGroup.Controls.Add(btnEditGroupVariables);
             tabGroup.Controls.Add(gridStatus);
@@ -1193,5 +1247,6 @@ namespace ResmarkPrinterGroupDemo
         private TabPage tabPrinters;
         private TabPage tabGroup;
         private PictureBox pictureBox1;
+        private FlexButton btnOffsets;
     }
 }

@@ -288,5 +288,40 @@
   <data name="VariablesTitle" xml:space="preserve">
   <value>Variables – {0}</value>
 </data>
-
+  <data name="OffsetFormTitle" xml:space="preserve">
+  <value>Edit Offsets</value>
+</data>
+  <data name="OffsetButtonSave" xml:space="preserve">
+  <value>Save</value>
+</data>
+  <data name="OffsetButtonCancel" xml:space="preserve">
+  <value>Cancel</value>
+</data>
+  <data name="OffsetButtonRemove" xml:space="preserve">
+  <value>Remove</value>
+</data>
+  <data name="OffsetSaved" xml:space="preserve">
+  <value>Offsets saved successfully.</value>
+</data>
+  <data name="OffsetRemoved" xml:space="preserve">
+  <value>Offset removed.</value>
+</data>
+  <data name="OffsetRemoveWarning" xml:space="preserve">
+  <value>Do you really want to remove the selected offset?</value>
+</data>
+  <data name="OffsetRemoveTitle" xml:space="preserve">
+  <value>Remove Offset</value>
+</data>
+  <data name="FillAllFields" xml:space="preserve">
+  <value>Please fill in all fields.</value>
+</data> 
+  <data name="OffsetsSaved" xml:space="preserve">
+  <value>Offsets have been saved.</value>
+</data>
+  <data name="ToXML" xml:space="preserve">
+  <value>To XML</value>
+</data>
+  <data name="SelectMsg" xml:space="preserve">
+  <value>Select Message</value>
+</data>
 </root>

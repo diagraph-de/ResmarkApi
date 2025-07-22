@@ -250,6 +250,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please fill in all fields. ähnelt.
+        /// </summary>
+        internal static string FillAllFields {
+            get {
+                return ResourceManager.GetString("FillAllFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {0} printers found. ähnelt.
         /// </summary>
         internal static string FoundPrinters {
@@ -300,6 +309,87 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string NoPrintersFound {
             get {
                 return ResourceManager.GetString("NoPrintersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        internal static string OffsetButtonCancel {
+            get {
+                return ResourceManager.GetString("OffsetButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
+        /// </summary>
+        internal static string OffsetButtonRemove {
+            get {
+                return ResourceManager.GetString("OffsetButtonRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        internal static string OffsetButtonSave {
+            get {
+                return ResourceManager.GetString("OffsetButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Offsets ähnelt.
+        /// </summary>
+        internal static string OffsetFormTitle {
+            get {
+                return ResourceManager.GetString("OffsetFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Offset removed. ähnelt.
+        /// </summary>
+        internal static string OffsetRemoved {
+            get {
+                return ResourceManager.GetString("OffsetRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove Offset ähnelt.
+        /// </summary>
+        internal static string OffsetRemoveTitle {
+            get {
+                return ResourceManager.GetString("OffsetRemoveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to remove the selected offset? ähnelt.
+        /// </summary>
+        internal static string OffsetRemoveWarning {
+            get {
+                return ResourceManager.GetString("OffsetRemoveWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Offsets saved successfully. ähnelt.
+        /// </summary>
+        internal static string OffsetSaved {
+            get {
+                return ResourceManager.GetString("OffsetSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Offsets have been saved. ähnelt.
+        /// </summary>
+        internal static string OffsetsSaved {
+            get {
+                return ResourceManager.GetString("OffsetsSaved", resourceCulture);
             }
         }
         
@@ -408,6 +498,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string SelectMessage {
             get {
                 return ResourceManager.GetString("SelectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select Message ähnelt.
+        /// </summary>
+        internal static string SelectMsg {
+            get {
+                return ResourceManager.GetString("SelectMsg", resourceCulture);
             }
         }
         
@@ -543,6 +642,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To XML ähnelt.
+        /// </summary>
+        internal static string ToXML {
+            get {
+                return ResourceManager.GetString("ToXML", resourceCulture);
             }
         }
         
