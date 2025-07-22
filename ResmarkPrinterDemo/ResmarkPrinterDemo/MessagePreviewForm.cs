@@ -20,8 +20,14 @@ public partial class MessagePreviewForm : CustomMaterialRoundedForm
 
         InitializeComponent();
 
-        Text = Resource.PreviewTitle;
-        btnPrint.Text = Resource.Print;
+        ApplyLanguage(); 
+    }
+
+    private void ApplyLanguage()
+    {
+        Text = Resource.PreviewTitle;  
+        btnPrint.Text = Resource.Print; 
+        btnClose.Text = Resource.Close;
     }
 
     private async void MessagePreviewForm_Load(object sender, EventArgs e)

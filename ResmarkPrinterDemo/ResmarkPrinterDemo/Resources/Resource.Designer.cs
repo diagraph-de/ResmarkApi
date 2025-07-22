@@ -81,6 +81,24 @@ namespace ResmarkPrinterGroupDemo.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        internal static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
         internal static string ConfigCancelButton {
             get {
                 return ResourceManager.GetString("ConfigCancelButton", resourceCulture);
@@ -286,6 +304,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die IP Address ähnelt.
+        /// </summary>
+        internal static string IpAddress {
+            get {
+                return ResourceManager.GetString("IpAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Message File (XML) ähnelt.
         /// </summary>
         internal static string MessageFile {
@@ -309,6 +336,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string NoPrintersFound {
             get {
                 return ResourceManager.GetString("NoPrintersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add / Update ähnelt.
+        /// </summary>
+        internal static string OffsetAddOrUpdate {
+            get {
+                return ResourceManager.GetString("OffsetAddOrUpdate", resourceCulture);
             }
         }
         
@@ -345,6 +381,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string OffsetFormTitle {
             get {
                 return ResourceManager.GetString("OffsetFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
+        /// </summary>
+        internal static string OffsetRemove {
+            get {
+                return ResourceManager.GetString("OffsetRemove", resourceCulture);
             }
         }
         
@@ -394,6 +439,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Offset Value ähnelt.
+        /// </summary>
+        internal static string OffsetValue {
+            get {
+                return ResourceManager.GetString("OffsetValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Pause ähnelt.
         /// </summary>
         internal static string Pause {
@@ -426,6 +480,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string PrintCount {
             get {
                 return ResourceManager.GetString("PrintCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printer ID ähnelt.
+        /// </summary>
+        internal static string PrinterId {
+            get {
+                return ResourceManager.GetString("PrinterId", resourceCulture);
             }
         }
         
@@ -471,6 +534,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string Resume {
             get {
                 return ResourceManager.GetString("Resume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -655,7 +727,16 @@ namespace ResmarkPrinterGroupDemo.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Variables saved. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        internal static string VariableName {
+            get {
+                return ResourceManager.GetString("VariableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Variables have been saved. ähnelt.
         /// </summary>
         internal static string VariablesSaved {
             get {
@@ -669,6 +750,15 @@ namespace ResmarkPrinterGroupDemo.Resources {
         internal static string VariablesTitle {
             get {
                 return ResourceManager.GetString("VariablesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Value ähnelt.
+        /// </summary>
+        internal static string VariableValue {
+            get {
+                return ResourceManager.GetString("VariableValue", resourceCulture);
             }
         }
     }

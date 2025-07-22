@@ -324,4 +324,47 @@
   <data name="SelectMsg" xml:space="preserve">
   <value>Nachricht auswählen</value>
 </data>
+  <data name="OffsetAddOrUpdate" xml:space="preserve">
+    <value>Hinzufügen / Aktualisieren</value>
+  </data>
+  <data name="PrinterId" xml:space="preserve">
+    <value>Drucker-ID</value>
+  </data>
+  <data name="IpAddress" xml:space="preserve">
+    <value>IP-Adresse</value>
+  </data>
+  <data name="OffsetValue" xml:space="preserve">
+    <value>Offset-Wert</value>
+  </data>
+  <data name="OffsetRemove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+  <value>Schließen</value>
+</data>
+  <data name="GroupVariablesTitle" xml:space="preserve">
+  <value>Gruppenvariablen</value>
+</data>
+  <data name="VariablesTitle" xml:space="preserve">
+  <value>Variablen – {0}</value>
+</data>
+  <data name="VariablesSaved" xml:space="preserve">
+  <value>Variablen gespeichert.</value>
+</data>
+  <data name="Done" xml:space="preserve">
+  <value>Fertig</value>
+</data>
+  <data name="VariableName" xml:space="preserve">
+  <value>Name</value>
+</data>
+  <data name="VariableValue" xml:space="preserve">
+  <value>Wert</value>
+</data>
+
 </root>

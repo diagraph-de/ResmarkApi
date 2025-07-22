@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using MaterialSkin.Controls;
+using ResmarkPrinterGroupDemo.Resources;
 
 namespace ResmarkPrinterGroupDemo;
 
@@ -13,7 +14,15 @@ public partial class MessagePreviewFormImageOnly : CustomMaterialRoundedForm
     {
         InitializeComponent();
         imageData = imageBytes;
+
+        ApplyLanguage();
     }
+
+    private void ApplyLanguage()
+    {
+        Text = Resource.PreviewTitle; 
+        btnClose.Text = Resource.Close;
+    } 
 
     private void MessagePreviewFormImageOnly_Load(object sender, EventArgs e)
     {

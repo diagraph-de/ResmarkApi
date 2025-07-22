@@ -28,11 +28,13 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
     {
         Width = 1200;
         Height = 800;
+
         InitializeComponent();
         InitLanguage();
         LoadMessages();
         InitStatusTable();
         RestoreSettings();
+
         Shown += async (s, e) =>
         {
             await ScanForPrinters();
@@ -75,14 +77,22 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
         {
             var selected = cmbLanguage.SelectedItem?.ToString();
             if (selected == "English")
+            {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+                Settings.Default.Language = "en";
+            }
             else
+            {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("de");
+                Settings.Default.Language = "de";
+            }
 
-            ApplyLanguage();
+            Settings.Default.Save();  
+            ApplyLanguage();  
         };
 
-        cmbLanguage.SelectedIndex = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "en" ? 1 : 0;
+        var lang = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+        cmbLanguage.SelectedIndex = lang == "en" ? 1 : 0;
     }
 
     private void ApplyLanguage()
@@ -307,9 +317,9 @@ public partial class GroupMainForm : CustomMaterialRoundedForm
 
         var wrapper = new ResmarkPrinterWrapper(_printerService, id, ip);
         var form = new VariableEditorForm(wrapper);
-        form.ShowDialog();
 
         lblStatus.Text = Resource.StatusEditVariables;
+        form.ShowDialog(); 
     }
 
     private void GroupMainForm_FormClosing(object sender, FormClosingEventArgs e)

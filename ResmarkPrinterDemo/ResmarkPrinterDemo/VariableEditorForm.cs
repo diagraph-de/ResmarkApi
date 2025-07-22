@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Threading.Tasks;
+using System.Data; 
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using ResmarkPrinterGroupDemo.Resources;
@@ -17,41 +16,46 @@ public partial class VariableEditorForm : CustomMaterialRoundedForm
     public VariableEditorForm(Dictionary<string, string> variables, ResmarkPrinterWrapper printer)
     {
         InitializeComponent();
+         
         _sharedVariables = variables;
-        Text = Resource.GroupVariablesTitle;
-
-        _table.Clear();
-        _table.Columns.Clear();
-        _table.Columns.Add("Name", typeof(string));
-        _table.Columns.Add("Wert", typeof(string));
-
+           
         foreach (var kv in _sharedVariables)
             _table.Rows.Add(kv.Key, kv.Value);
 
         dataGridVariables.DataSource = _table;
 
-        if (dataGridVariables.Columns.Count >= 2)
-        {
-            dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
+        dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         _printer = printer;
+    }
+     
+
+    private void ApplyLanguage()
+    {
+        Text = Resource.GroupVariablesTitle;
+        if (_sharedVariables != null)
+            Text = Resource.GroupVariablesTitle;
+        else if (_printer != null)
+            Text = string.Format(Resource.VariablesTitle, _printer.IpAddress);
+
+        if (dataGridVariables.Columns.Count > 0) 
+            dataGridVariables.Columns[0].HeaderText = Resource.VariableName;
+        if (dataGridVariables.Columns.Count > 1) 
+            dataGridVariables.Columns[1].HeaderText = Resource.VariableValue;
+       
+        btnSave.Text = Resource.Save; 
     }
 
     public VariableEditorForm(ResmarkPrinterWrapper printer)
     {
         InitializeComponent();
         this._printer = printer;
-        Text = string.Format(Resource.VariablesTitle, printer.IpAddress);
+         
     }
 
     private async void VariableEditorForm_Load(object sender, EventArgs e)
-    {
-        await LoadVariablesAsync();
-    }
-
-    private async Task LoadVariablesAsync()
-    {
+    { 
         _table.Clear();
         _table.Columns.Clear();
         _table.Columns.Add("Name", typeof(string));
@@ -68,6 +72,8 @@ public partial class VariableEditorForm : CustomMaterialRoundedForm
             dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells; // „Name“
             dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // „Wert“
         }
+
+        ApplyLanguage();
     }
 
     private async void btnSave_Click(object sender, EventArgs e)

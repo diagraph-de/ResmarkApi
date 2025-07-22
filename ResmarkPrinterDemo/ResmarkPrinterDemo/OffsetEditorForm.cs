@@ -13,8 +13,27 @@ public partial class OffsetEditorForm : CustomMaterialRoundedForm
     {
         InitializeComponent();
         _offsetManager = offsetManager;
-        Text = Resource.OffsetFormTitle;
+
+        ApplyLanguage();
     }
+
+    private void ApplyLanguage()
+    {
+        Text = Resource.OffsetFormTitle;
+        btnAddOrUpdate.Text = Resource.OffsetAddOrUpdate;
+        btnRemove.Text = Resource.OffsetRemove;
+        btnSave.Text = Resource.Save;
+        btnCancel.Text = Resource.Cancel;
+        lblPrinterId.Text = Resource.PrinterId;
+        lblIp.Text = Resource.IpAddress;
+        lblMessage.Text = Resource.MessageFile;
+        lblOffset.Text = Resource.OffsetValue;
+        dataGridOffsets.Columns[0].HeaderText = Resource.PrinterId;
+        dataGridOffsets.Columns[1].HeaderText = Resource.IpAddress;
+        dataGridOffsets.Columns[2].HeaderText = Resource.MessageFile;
+        dataGridOffsets.Columns[3].HeaderText = Resource.OffsetValue;
+    }
+
 
     private void OffsetEditorForm_Load(object sender, EventArgs e)
     {
