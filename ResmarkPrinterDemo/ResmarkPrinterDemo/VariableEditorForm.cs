@@ -16,35 +16,43 @@ public partial class VariableEditorForm : CustomMaterialRoundedForm
     public VariableEditorForm(Dictionary<string, string> variables, ResmarkPrinterWrapper printer)
     {
         InitializeComponent();
-         
+
+        _printer = printer;
         _sharedVariables = variables;
-           
+
+        _table.Columns.Add("Name", typeof(string));
+        _table.Columns.Add("Wert", typeof(string));
+
         foreach (var kv in _sharedVariables)
             _table.Rows.Add(kv.Key, kv.Value);
 
         dataGridVariables.DataSource = _table;
 
-        dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-        dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        if (dataGridVariables.Columns.Count >= 2)
+        {
+            dataGridVariables.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridVariables.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
 
-        _printer = printer;
+        ApplyLanguage();
     }
-     
+
+
 
     private void ApplyLanguage()
     {
-        Text = Resource.GroupVariablesTitle;
         if (_sharedVariables != null)
             Text = Resource.GroupVariablesTitle;
         else if (_printer != null)
             Text = string.Format(Resource.VariablesTitle, _printer.IpAddress);
 
-        if (dataGridVariables.Columns.Count > 0) 
+        if (dataGridVariables.Columns.Count >= 2)
+        {
             dataGridVariables.Columns[0].HeaderText = Resource.VariableName;
-        if (dataGridVariables.Columns.Count > 1) 
             dataGridVariables.Columns[1].HeaderText = Resource.VariableValue;
-       
-        btnSave.Text = Resource.Save; 
+        }
+
+        btnSave.Text = Resource.Save;
     }
 
     public VariableEditorForm(ResmarkPrinterWrapper printer)
