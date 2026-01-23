@@ -6,10 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>ResmarkPrinterGroupDemo</RootNamespace>
     <ApplicationIcon>Diagraph.ico</ApplicationIcon>
-  </PropertyGroup>
+  <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources><LangVersion>10.0</LangVersion></PropertyGroup>
   <ItemGroup>
     <Content Include="Diagraph.ico" />
-  </ItemGroup>
+  <PackageReference Include="System.Resources.Extensions" Version="8.0.0" /></ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\aControl\acControls\acControls.csproj" />
     <ProjectReference Include="..\..\..\..\aControl\aControl\aControl_XML\ac.csproj" />
