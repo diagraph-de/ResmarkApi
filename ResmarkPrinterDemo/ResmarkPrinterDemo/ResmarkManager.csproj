@@ -9,7 +9,7 @@
   <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources><LangVersion>10.0</LangVersion></PropertyGroup>
   <ItemGroup>
     <Content Include="Diagraph.ico" />
-  <PackageReference Include="System.Resources.Extensions" Version="8.0.0" /></ItemGroup>
+  <PackageReference Include="System.Resources.Extensions" /></ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\aControl\acControls\acControls.csproj" />
     <ProjectReference Include="..\..\..\..\aControl\aControl\aControl_XML\ac.csproj" />
