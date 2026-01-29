@@ -26,7 +26,8 @@ public class ClientService
         using (var discovery = DiscoveryClient.Create(uri, endpointConfiguration))
         {
             var endpoints = await discovery.GetEndpointsAsync(null).ConfigureAwait(false);
-            var selectedEndpoint = CoreClientUtils.SelectEndpoint(uri.ToString(), false);
+            var selectedEndpoint = CoreClientUtils.SelectEndpoint(_config, uri.ToString(), false, 15000);
+
 
             var endpointConfig = EndpointConfiguration.Create(_config);
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfig);
