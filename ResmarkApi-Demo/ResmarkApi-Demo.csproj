@@ -44,7 +44,6 @@
       <Link>README.md</Link>
     </None>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="variable.next">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -57,12 +56,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-	  <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
-	  <PackageReference Include="System.Buffers" />
-	  <PackageReference Include="System.Memory" />
-	  <PackageReference Include="System.Numerics.Vectors" />
-	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-	  <PackageReference Include="System.Threading.Tasks.Dataflow" />
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
+    <PackageReference Include="System.Buffers"/>
+    <PackageReference Include="System.Memory"  />
+    <PackageReference Include="System.Numerics.Vectors" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe"/>
+    <PackageReference Include="System.Threading.Tasks.Dataflow" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testversion|Any CPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>

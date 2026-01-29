@@ -22,7 +22,7 @@ public class PrinterSearch
     ///     Initiates a printer search and returns a list of discovered printers.
     /// </summary>
     /// <returns>The list of discovered printers.</returns>
-    public async Task<List<string>> Search()
+    public static async Task<List<string>> Search()
     {
         var printers = new List<string>();
         var searchtypes = new[] { PrinterType.LCIJTask1 };
@@ -37,7 +37,7 @@ public class PrinterSearch
         await Task.WhenAll(networkInterfaceInfo.SelectMany(i => i.Addresses).Select(action));
     }
 
-    private async Task BroadcastToNetworkInterfaceAsync(
+    private static async Task BroadcastToNetworkInterfaceAsync(
         IPAddress address,
         PrinterType[] printerTypesToFind,
         List<string> printers)
@@ -76,7 +76,7 @@ public class PrinterSearch
         }
     }
 
-    private async Task ReceiveDataAsync(
+    private static async Task ReceiveDataAsync(
         UdpClient client,
         List<string> printers,
         CancellationToken token)

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Workstation.ServiceModel.Ua;
+using Opc.Ua;
 
 namespace Diagraph.ResmarkApi.Interfaces;
 

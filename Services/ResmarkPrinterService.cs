@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 using Diagraph.ResmarkApi.Interfaces;
 using Diagraph.ResmarkApi.Models;
 using Newtonsoft.Json;
-using Workstation.ServiceModel.Ua;
-using Workstation.ServiceModel.Ua.Channels;
-using CallMethodRequest = Workstation.ServiceModel.Ua.CallMethodRequest;
-using CallRequest = Workstation.ServiceModel.Ua.CallRequest;
-using CallResponse = Workstation.ServiceModel.Ua.CallResponse;
-using NodeId = Workstation.ServiceModel.Ua.NodeId;
-using StatusCode = Workstation.ServiceModel.Ua.StatusCode;
-using Variant = Workstation.ServiceModel.Ua.Variant;
+using Opc.Ua;
+using Opc.Ua.Client;
 
 namespace Diagraph.ResmarkApi.Services;
 
@@ -23,7 +17,7 @@ public class ResmarkPrinterService : IPrinterService
     public const int DefaultOpcuaPort = 16664;
     private static readonly NodeId ObjectId = NodeId.Parse(ObjectIdString);
 
-    public static Dictionary<string, ClientSessionChannel> _channels = new();
+    public static Dictionary<string, Session> _sessions = new();
     private readonly bool _cache;
 
     private readonly ClientService _clientService;
@@ -202,30 +196,30 @@ public class ResmarkPrinterService : IPrinterService
         };
 
         // Process the response if it was successful
-        if (response.Success && response.Response?.Results != null && response.Response.Results.Length > 0)
+        if (response.Success && response.Response?.Results != null && response.Response.Results.Count > 0)
         {
             var result = response.Response.Results[0];
             var outputArgs = result.OutputArguments;
 
             // Ensure output arguments are as expected before accessing them
-            if (outputArgs.Length > 3 && outputArgs[3].Value != null)
+            if (outputArgs.Count > 3 && outputArgs[3].Value != null)
                 ret.EncoderSpeed = Convert.ToInt32(outputArgs[3].Value);
-            if (outputArgs.Length > 1 && outputArgs[1].Value != null) ret.Status = outputArgs[1].Value?.ToString();
+            if (outputArgs.Count > 1 && outputArgs[1].Value != null) ret.Status = outputArgs[1].Value?.ToString();
 
             // Populate PrinterErrorDetails with values from OutputArguments[6] if it exists
-            if (outputArgs.Length > 6 && outputArgs[6].Value is string[] errorDetails)
+            if (outputArgs.Count > 6 && outputArgs[6].Value is string[] errorDetails)
                 ret.PrinterErrorDetails = new List<string>(errorDetails);
             else
                 ret.PrinterErrorDetails = new List<string>();
 
             // Populate PrinterErrors with values from OutputArguments[5] if it exists
-            if (outputArgs.Length > 5 && outputArgs[5].Value is string[] errors)
+            if (outputArgs.Count > 5 && outputArgs[5].Value is string[] errors)
                 ret.PrinterErrors = new List<string>(errors);
             else
                 ret.PrinterErrors = new List<string>();
 
             ret.MessageName = "";
-            if (outputArgs.Length > 2 && outputArgs[2].Value != null) ret.MessageName = outputArgs[2].Value + "";
+            if (outputArgs.Count > 2 && outputArgs[2].Value != null) ret.MessageName = outputArgs[2].Value + "";
 
             if (ret.MessageName.Length > 0 && !ret.MessageName.EndsWith(".next"))
                 ret.MessageName += ".next";
@@ -368,7 +362,7 @@ public class ResmarkPrinterService : IPrinterService
         {
             MethodId = NodeId.Parse(methodId),
             ObjectId = ObjectId,
-            InputArguments = args.Select(arg => new Variant(arg)).ToArray()
+            InputArguments = new VariantCollection(args.Select(arg => new Variant(arg)))
         };
     }
 
@@ -409,39 +403,45 @@ public class ResmarkPrinterService : IPrinterService
     private async Task<CallResponse?> CallResponse(string printerId, string ipAddress,
         CallMethodRequest callMethodRequest)
     {
-        ClientSessionChannel channel = null;
+        Session session = null;
         if (_cache)
         {
             var key = printerId + ipAddress;
-            if (!_channels.ContainsKey(key))
+            if (!_sessions.ContainsKey(key))
             {
-                channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
-                _channels.Add(key, channel);
+                session = await _clientService.OpenOpcuaSessionAsync(printerId, ipAddress, DefaultOpcuaPort).ConfigureAwait(false);
+                _sessions.Add(key, session);
             }
             else
             {
-                channel = _channels[key];
+                session = _sessions[key];
             }
         }
         else
         {
-            channel = await _clientService.OpenOpcuaChannelAsync(printerId, ipAddress, DefaultOpcuaPort);
+            session = await _clientService.OpenOpcuaSessionAsync(printerId, ipAddress, DefaultOpcuaPort).ConfigureAwait(false);
         }
 
-
-        if (channel is IRequestChannel requestChannel)
+        try
         {
-            var callRequest = new CallRequest
+            var methods = new CallMethodRequestCollection { callMethodRequest };
+            session.Call(null, methods, out var results, out var diagnosticInfos);
+
+            return new CallResponse
             {
-                MethodsToCall = new[] { callMethodRequest }
+                ResponseHeader = new ResponseHeader { ServiceResult = StatusCodes.Good },
+                Results = results,
+                DiagnosticInfos = diagnosticInfos
             };
-
-            var ret = await requestChannel.CallAsync(callRequest);
-            if (!_cache) await channel.CloseAsync();
-            return ret;
         }
-
-        throw new InvalidOperationException("The channel is not of type IRequestChannel.");
+        finally
+        {
+            if (!_cache && session != null)
+            {
+                try { session.Close(); } catch { }
+                session.Dispose();
+            }
+        }
     }
 
     private OperationResult HandleResponse<T>(CallResponse? callResponse)
@@ -453,7 +453,7 @@ public class ResmarkPrinterService : IPrinterService
                 Error = "The printer did not respond."
             };
 
-        if (StatusCode.IsGood(callResponse.ResponseHeader.ServiceResult) && callResponse.Results.Length != 0)
+        if (StatusCode.IsGood(callResponse.ResponseHeader.ServiceResult) && callResponse.Results.Count != 0)
             return new OperationResult
             {
                 Success = true,

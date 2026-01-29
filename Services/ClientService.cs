@@ -1,43 +1,78 @@
-using System.Net;
-using System.Reflection;
+using System;
 using System.Threading.Tasks;
-using Workstation.ServiceModel.Ua;
-using Workstation.ServiceModel.Ua.Channels;
-using ApplicationDescription = Workstation.ServiceModel.Ua.ApplicationDescription;
-using ApplicationType = Workstation.ServiceModel.Ua.ApplicationType;
+using Opc.Ua;
+using Opc.Ua.Client;
+using Opc.Ua.Configuration;
 
 namespace Diagraph.ResmarkApi.Services;
 
 public class ClientService
 {
-    private readonly ApplicationDescription _clientDescription;
+    private readonly ApplicationConfiguration _config;
 
     public ClientService()
     {
-        var name = Assembly.GetExecutingAssembly().GetName().Name;
-        _clientDescription = new ApplicationDescription
+        _config = CreateConfiguration();
+    }
+
+    public async Task<Session> OpenOpcuaSessionAsync(string printerId, string ipAddress, int port)
+    {
+        var endpointUrl = $"opc.tcp://{ipAddress}:{port}";
+        var uri = new Uri(endpointUrl);
+
+        var endpointConfiguration = EndpointConfiguration.Create(_config);
+        endpointConfiguration.OperationTimeout = 15000;
+
+        using (var discovery = DiscoveryClient.Create(uri, endpointConfiguration))
         {
-            ApplicationName = name,
-            ApplicationUri = "urn:" + Dns.GetHostName() + ":" + name,
-            ApplicationType = ApplicationType.Client
-        };
+            var endpoints = await discovery.GetEndpointsAsync(null).ConfigureAwait(false);
+            var selectedEndpoint = CoreClientUtils.SelectEndpoint(uri.ToString(), false);
+
+            var endpointConfig = EndpointConfiguration.Create(_config);
+            var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfig);
+
+            var session = await Session.Create(
+                _config,
+                endpoint,
+                false,
+                $"ResmarkApi:{printerId}",
+                60000,
+                new UserIdentity(new AnonymousIdentityToken()),
+                null
+            ).ConfigureAwait(false);
+
+            return session;
+        }
+
     }
 
-    public async Task<ClientSessionChannel> OpenOpcuaChannelAsync(string channelId, string ipAddress, int port)
+    private static ApplicationConfiguration CreateConfiguration()
     {
-        var channel = CreateChannel(channelId, ipAddress, port);
-        await channel.OpenAsync();
-        return channel;
-    }
-
-    private ClientSessionChannel CreateChannel(string channelId, string ipAddress, int opcuaPort,
-        uint timeout = 10000u)
-    {
-        var channel = new ClientSessionChannel(_clientDescription, null, new AnonymousIdentity(),
-            $"opc.tcp://{ipAddress}:{opcuaPort}", null, null, new ClientSessionChannelOptions
+        var config = new ApplicationConfiguration
+        {
+            ApplicationName = "ResmarkApi",
+            ApplicationType = ApplicationType.Client,
+            ApplicationUri = "urn:ResmarkApi",
+            SecurityConfiguration = new SecurityConfiguration
             {
-                TimeoutHint = timeout
-            });
-        return channel;
+                ApplicationCertificate = new CertificateIdentifier(),
+                AutoAcceptUntrustedCertificates = true,
+                RejectSHA1SignedCertificates = false,
+                AddAppCertToTrustedStore = false
+            },
+            TransportQuotas = new TransportQuotas
+            {
+                OperationTimeout = 60000,
+                SecurityTokenLifetime = 3600000
+            },
+            ClientConfiguration = new ClientConfiguration
+            {
+                DefaultSessionTimeout = 60000
+            }
+        };
+
+        config.Validate(ApplicationType.Client).GetAwaiter().GetResult();
+        config.CertificateValidator.CertificateValidation += (_, e) => { e.Accept = true; };
+        return config;
     }
 }

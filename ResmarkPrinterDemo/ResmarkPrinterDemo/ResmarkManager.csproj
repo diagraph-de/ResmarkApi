@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>ResmarkPrinterGroupDemo</RootNamespace>
     <ApplicationIcon>Diagraph.ico</ApplicationIcon>
-  <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources><LangVersion>10.0</LangVersion></PropertyGroup>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <LangVersion>10.0</LangVersion>
+    <RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="Diagraph.ico" />
-  <PackageReference Include="System.Resources.Extensions" /></ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\aControl\acControls\acControls.csproj" />
     <ProjectReference Include="..\..\..\..\aControl\aControl\aControl_XML\ac.csproj" />
